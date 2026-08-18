@@ -15,7 +15,8 @@
     "passcode": "node scripts/set-passcode.js",
     "backup": "node scripts/backup.js",
     "purge": "node scripts/purge.js",
-    "sample": "node scripts/sample-for-irr.js"
+    "sample": "node scripts/sample-for-irr.js",
+    "allowlist": "node scripts/teacher-allowlist.js"
   },
   "dependencies": {},
   "devDependencies": {}
