@@ -35,17 +35,28 @@ function loadRubric() {
 }
 
 // ---- こちらの観点コード → 契約の軸キー ----
-// TD（発話機会の配分）が入っていないのは、意図的です。
-// 発話量・発話比率・ターン数は、契約が「単独で加点・減点しない」と決めているもので、
-// measurement へ落とします。こちらの採点で TD が独立した観点になっていたのは、
-// 向こうの不変条件5と正面からぶつかります。
+// 軸は nijin-core-1.0.0 のものをそのまま使います（会社の中で結果を比較できるようにするため）。
+//
+// TD（発話機会の配分）が入っていないのは意図的です。発話量・発話比率・ターン数は、
+// 契約が「単独で加点・減点しない」と決めているもので、measurement へ落とします。
+//
+// CI（理解可能なインプット）・NM（意味交渉）・CF（訂正と取り込み）は、
+// **1つの軸にまとまります**。日本語の授業でこの3つが見ているのは、
+// 「通じさせるやりとりが成立したか」——つまり対話による共同構築だからです。
 const CODE_TO_KEY = {
   SC: 'psychological_safety_and_participation_choice',
-  CI: 'comprehensible_input_adjustment',
-  NM: 'meaning_negotiation_and_repair',
-  CF: 'corrective_feedback_and_uptake',
+  CI: 'dialogic_co_construction',
+  NM: 'dialogic_co_construction',
+  CF: 'dialogic_co_construction',
   OUT: 'output_quality_and_transformation',
 };
+
+// 書き起こしの統計からは判定できない軸。常に not_observable で返します。
+// 「予定調和からの逸脱」と「具体と抽象の往還」は、内容の理解が要るためです。
+const NOT_OBSERVABLE_BY_TRANSCRIPT = [
+  'productive_departure_and_response',
+  'concrete_abstract_cycle',
+];
 
 // ---- 検出器ごとの確からしさ ----
 // 「この検出はどのくらい信じてよいか」を、正直に置きます。
@@ -71,11 +82,24 @@ const EVENT_CONFIDENCE = {
 // どのイベントが、どの軸の根拠になるか
 const KEY_TO_EVENTS = {
   psychological_safety_and_participation_choice: ['short_wait', 'silent_student'],
-  comprehensible_input_adjustment: ['long_utterance', 'empty_check', 'comprehension_check', 'rephrase'],
-  meaning_negotiation_and_repair: ['clarification_request', 'confirmation_check'],
-  corrective_feedback_and_uptake: ['recast', 'explicit_correction', 'uptake'],
+  dialogic_co_construction: [
+    'clarification_request', 'confirmation_check',   // 通じさせるやりとり
+    'recast', 'explicit_correction', 'uptake',       // 訂正が届いたか
+    'long_utterance', 'empty_check', 'comprehension_check', 'rephrase', // わかる高さに合わせたか
+  ],
   output_quality_and_transformation: ['student_extended_turn'],
+  productive_departure_and_response: [],
+  concrete_abstract_cycle: [],
 };
+
+// 保守的中央値。複数の観点が1つの軸にまとまるときに使う。
+// 平均にしないのは、1つでも低いものがあるときに、それを平均で薄めないためです。
+// （向こうのチャンク統合が「保守的中央値」を使っているのに合わせています）
+function conservativeMedian(values) {
+  if (!values.length) return null;
+  const sorted = values.slice().sort((a, b) => a - b);
+  return sorted[Math.floor((sorted.length - 1) / 2)];
+}
 
 // こちらの 0〜4 → 契約の 1〜5。
 // **level 1 は絶対に出しません。** 契約の level 1 は「学習を狭める働きが確認される」で、
@@ -119,15 +143,27 @@ function toObservationInput(scored, opts = {}) {
   const candidates = [];
   const notObservable = [];
   for (const dim of rubric.dimensions) {
-    const code = Object.keys(CODE_TO_KEY).find((c) => CODE_TO_KEY[c] === dim.key);
-    const ours = code ? scored.dims[code] : null;
-    const refs = observations.filter((o) => (KEY_TO_EVENTS[dim.key] || []).includes(o.category)).map((o) => o.id);
-    const level = ours ? toCandidateLevel(ours.level) : null;
-
-    if (!ours || level === null) {
+    // 書き起こしからは判定できない軸
+    if (NOT_OBSERVABLE_BY_TRANSCRIPT.includes(dim.key)) {
       notObservable.push({
         dimension_key: dim.key,
-        reason: ours
+        reason: '書き起こしの統計からは判定できません。映像の観察か人間評定が必要です。',
+        attempts: 1,
+      });
+      continue;
+    }
+    // この軸に寄与するこちらの観点（複数のことがある）
+    const codes = Object.keys(CODE_TO_KEY).filter((c) => CODE_TO_KEY[c] === dim.key);
+    const ourDims = codes.map((c) => scored.dims[c]).filter(Boolean);
+    const refs = observations.filter((o) => (KEY_TO_EVENTS[dim.key] || []).includes(o.category)).map((o) => o.id);
+    const levels = ourDims.map((d) => toCandidateLevel(d.level)).filter((x) => x !== null);
+    const level = conservativeMedian(levels);
+    const ours = ourDims[0];
+
+    if (!ourDims.length || level === null) {
+      notObservable.push({
+        dimension_key: dim.key,
+        reason: ourDims.length
           ? '書き起こしから、この軸の判定に必要な行動が観察できませんでした。'
           : 'この軸は、書き起こしからは観察していません。',
         attempts: 1,
@@ -151,10 +187,10 @@ function toObservationInput(scored, opts = {}) {
       status_hint: 'scored',
       candidate_level: level,
       confidence: round(confidence, 2),
-      explanation: `${dim.label}：書き起こしの信号（${(dim.question || '').slice(0, 24)}…）から算出。指標値 ${ours.value}。`,
+      explanation: `${dim.label}：書き起こしの信号から算出（${codes.join('・')}の保守的中央値）。指標値 ${ourDims.map((d) => d.value).join(' / ')}。`,
       evidence_refs: refs,
       counterevidence_refs: [],
-      reason_codes: [`TRANSCRIPT_SIGNAL_${code}`],
+      reason_codes: codes.map((c) => `TRANSCRIPT_SIGNAL_${c}`),
       major_judgement: false,
     });
   }
@@ -300,6 +336,7 @@ function toEvaluationResult(input, opts = {}) {
     limitations: [
       '映像と音声を見ていません。書き起こしのテキストだけから観察しています。',
       'カメラのオン・オフ、表情、チャット、成果物は観察できていません。',
+      '「予定調和からの逸脱と応答」と「具体と抽象の往還」は、書き起こしからは判定していません。',
       'リキャストと取り込みは文字の重なりから推定しており、確からしさは 0.6 です。',
       s.silent_student_count
         ? `冒頭${s.window_minutes || 15}分で発話が記録されなかった子が ${s.silent_student_count} 人います。話していないのか、記録に乗らなかったのかは区別できていません。`
@@ -324,6 +361,7 @@ function evaluate(scored, opts = {}) {
 }
 
 module.exports = {
-  toObservationInput, toEvaluationResult, evaluate, loadRubric,
-  CODE_TO_KEY, EVENT_CONFIDENCE, RUBRIC_VERSION, CONFIDENCE_THRESHOLD, LEVEL_TO_SCORE,
+  toObservationInput, toEvaluationResult, evaluate, loadRubric, conservativeMedian,
+  CODE_TO_KEY, KEY_TO_EVENTS, NOT_OBSERVABLE_BY_TRANSCRIPT,
+  EVENT_CONFIDENCE, RUBRIC_VERSION, CONFIDENCE_THRESHOLD, LEVEL_TO_SCORE,
 };

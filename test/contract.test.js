@@ -75,11 +75,11 @@ test('不変条件3：1軸でも未確定なら総合点を出さない', () => 
 });
 
 test('不変条件4：confidence 0.65 未満は人間確認へ落ちる', () => {
-  // リキャストと取り込みは 0.6。だから訂正の軸は自動確定しない。
-  const cf = evaluation.dimensions.find((d) => d.key === 'corrective_feedback_and_uptake');
-  assert.strictEqual(cf.status, 'review_required', '推定に頼った軸を自動確定してはいけない');
-  assert.ok(cf.reason_codes.includes('LOW_CANDIDATE_CONFIDENCE')
-    || cf.reason_codes.includes('LOW_EVIDENCE_CONFIDENCE'));
+  // リキャストと取り込みは 0.6。だから対話の軸は自動確定しない。
+  const dc = evaluation.dimensions.find((d) => d.key === 'dialogic_co_construction');
+  assert.strictEqual(dc.status, 'review_required', '推定に頼った軸を自動確定してはいけない');
+  assert.ok(dc.reason_codes.includes('LOW_CANDIDATE_CONFIDENCE')
+    || dc.reason_codes.includes('LOW_EVIDENCE_CONFIDENCE'));
 });
 
 test('不変条件5：measurement は採点に使われていない', () => {
@@ -107,6 +107,33 @@ test('不変条件7：観察層は点を返さない', () => {
   const json = JSON.stringify(observation);
   assert.ok(!json.includes('"overall_score"'), '観察入力に総合点を入れない');
   assert.ok(!json.includes('"score"'), '観察入力にスコアを入れない');
+});
+
+test('軸は nijin-core と同じ5つ（会社の中で比較できるように）', () => {
+  const keys = evaluation.dimensions.map((d) => d.key);
+  assert.deepStrictEqual(keys, [
+    'psychological_safety_and_participation_choice',
+    'dialogic_co_construction',
+    'productive_departure_and_response',
+    'concrete_abstract_cycle',
+    'output_quality_and_transformation',
+  ], 'nijin-core-1.0.0 と同じ軸・同じ順');
+});
+
+test('書き起こしから判定できない2軸は not_observable で返す', () => {
+  for (const key of ['productive_departure_and_response', 'concrete_abstract_cycle']) {
+    const d = evaluation.dimensions.find((x) => x.key === key);
+    assert.strictEqual(d.status, 'not_observable', `${key} は書き起こしからは判定しない`);
+    assert.strictEqual(d.score, null);
+    assert.ok(d.not_observable.length > 0, '理由を書く');
+  }
+});
+
+test('複数の観点が1つの軸にまとまるとき、保守的中央値を使う', () => {
+  const contractLib = require('../server/lib/contract');
+  assert.strictEqual(contractLib.conservativeMedian([2, 4, 5]), 4);
+  assert.strictEqual(contractLib.conservativeMedian([2, 5]), 2, '偶数なら低いほう');
+  assert.strictEqual(contractLib.conservativeMedian([]), null);
 });
 
 test('人間評定が主の軸は、こちらから候補を出さない', () => {
@@ -144,12 +171,16 @@ test('決定的：同じ書き起こしから同じ評価が出る', () => {
   assert.strictEqual(a.analysis_id, b.analysis_id, '同じ入力なら分析IDも同じ');
 });
 
-test('ルーブリック：nijin-core と2軸だけキーを共有する', () => {
+test('ルーブリック：軸も重みも nijin-core と同じ', () => {
   const rubric = contract.loadRubric();
-  const keys = rubric.dimensions.map((d) => d.key);
-  assert.ok(keys.includes('psychological_safety_and_participation_choice'));
-  assert.ok(keys.includes('output_quality_and_transformation'));
-  assert.strictEqual(rubric.dimensions.reduce((a, d) => a + d.weight, 0), 100, '重みの合計は100');
+  assert.strictEqual(rubric.based_on, 'nijin-core-1.0.0');
+  assert.deepStrictEqual(rubric.dimensions.map((d) => d.weight), [25, 20, 20, 20, 15],
+    'nijin-core-1.0.0 と同じ重み');
+  assert.strictEqual(rubric.dimensions.reduce((a, d) => a + d.weight, 0), 100);
+  // 変えてよいのはアンカーと信号だけ
+  for (const d of rubric.dimensions) {
+    assert.ok(d.anchors && Object.keys(d.anchors).length === 5, `${d.key} に5段階のアンカーが要る`);
+  }
 });
 
 const ng = results.filter((r) => r[0] === 'NG');
