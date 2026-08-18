@@ -228,6 +228,18 @@ test('撤退基準：測っていない指標は「触れていない」に数�
     await expectFail(call('GET', '/api/lessons', { as: 'u_r' }), 'FORBIDDEN', '一覧');
   });
 
+  await testAsync('アーム：先生には見せない（運営とメンターには見せる）', async () => {
+    store.insert('lessons', { id: 'ls_arm', classId: 'cl_t', facilitatorId: 'u_f1', arm: 'B', date: '2026-08-05', attendance: 8 });
+    const mine = await call('GET', '/api/lessons', { as: 'u_f1' });
+    assert.ok(!JSON.stringify(mine.body).includes('"arm"'), '先生の画面にアームを出さない');
+    const sess = await call('GET', '/api/session', { as: 'u_f1' });
+    assert.strictEqual(sess.body.user.arm, undefined, 'ログイン情報にもアームを入れない');
+    const admin = await call('GET', '/api/lessons', { as: 'u_a' });
+    assert.ok(JSON.stringify(admin.body).includes('"arm"'), '運営には見せる');
+    const mentor = await call('GET', '/api/lessons', { as: 'u_m' });
+    assert.ok(JSON.stringify(mentor.body).includes('"arm"'), 'メンターには見せる');
+  });
+
   await testAsync('API：先生は自分の授業しか見えない', async () => {
     store.insert('classes', { id: 'cl_t', name: 'T組', facilitatorId: 'u_f1', arm: 'A', capacity: 8, studentIds: ['st_t1'] });
     store.insert('students', { id: 'st_t1', name: 'ひみつの名前', classId: 'cl_t', arm: 'A', status: 'active' });

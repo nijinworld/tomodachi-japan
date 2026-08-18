@@ -275,6 +275,15 @@ function scopeLessons(ctx, lessons) {
   return [];
 }
 
+// アームは運営が把握するもので、先生には見せない。
+// 自分がどちらのアームかを知った時点で、ふるまいが変わります（期待効果）。
+// 12月に測りたいのは「伴走のやり方の違い」であって、「どちらだと思っているか」ではありません。
+function hideArm(ctx, rec) {
+  if (!rec || ctx.user.role !== 'facilitator') return rec;
+  const { arm, ...rest } = rec;
+  return rest;
+}
+
 // 子どもの表示名。見る権限がない相手には「子ども1」のような記号しか返さない。
 function childLabel(ctx, student, index) {
   if (!student) return `子ども${index + 1}`;
@@ -338,7 +347,9 @@ route('PUT', '/api/settings', (ctx) => {
 
 // ===== ログイン =====
 route('GET', '/api/session', (ctx) => ok({
-  user: publicUser(ctx.user),
+  user: ctx.user && ctx.user.role === 'facilitator'
+    ? (({ arm, ...rest }) => rest)(publicUser(ctx.user))
+    : publicUser(ctx.user),
   bootstrap_needed: store.all('users').every((u) => !u.hash),
   roles: auth.ROLES,
 }), { public: true, allowWhenHalted: true });
@@ -382,7 +393,7 @@ route('GET', '/api/users', (ctx) => {
   }
   if (ctx.query.role) us = us.filter((u) => u.role === ctx.query.role);
   if (ctx.query.arm) us = us.filter((u) => u.arm === ctx.query.arm);
-  return ok(us.map(publicUser));
+  return ok(us.map((u) => hideArm(ctx, publicUser(u))));
 }, { roles: ['admin', 'mentor', 'facilitator', 'staff'] });
 
 route('POST', '/api/users', (ctx) => {
@@ -439,8 +450,8 @@ route('GET', '/api/classes', (ctx) => {
   if (ctx.user.role === 'facilitator') cs = cs.filter((c) => c.facilitatorId === ctx.user.id);
   else if (ctx.user.role === 'mentor') cs = cs.filter((c) => auth.canSeeFacilitator(ctx.user, c.facilitatorId));
   return ok(cs.map((c) => ({
-    ...c,
-    facilitator: publicUser(store.get('users', c.facilitatorId)),
+    ...hideArm(ctx, c),
+    facilitator: hideArm(ctx, publicUser(store.get('users', c.facilitatorId))),
     students: c.studentIds.map((sid, i) => {
       const st = store.get('students', sid);
       return st ? { ...st, name: childLabel(ctx, st, i), consent_ok: consentOk(st) } : null;
@@ -564,7 +575,7 @@ route('GET', '/api/lessons', (ctx) => {
     .map((l) => {
       const sc = scores.find((s) => s.lessonId === l.id);
       return {
-        ...l,
+        ...hideArm(ctx, l),
         facilitator: (store.get('users', l.facilitatorId) || {}).name || null,
         className: (store.get('classes', l.classId) || {}).name || null,
         scored: !!sc,
@@ -591,9 +602,9 @@ route('GET', '/api/lessons/:id', (ctx, p) => {
   const label = {};
   roster.forEach((sid, i) => { label[sid] = childLabel(ctx, store.get('students', sid), i); });
   return ok({
-    lesson: l,
-    facilitator: publicUser(store.get('users', l.facilitatorId)),
-    class: klass,
+    lesson: hideArm(ctx, l),
+    facilitator: hideArm(ctx, publicUser(store.get('users', l.facilitatorId))),
+    class: hideArm(ctx, klass),
     students: roster.map((sid, i) => {
       const st = store.get('students', sid);
       return st ? { ...st, name: childLabel(ctx, st, i) } : null;
@@ -708,7 +719,7 @@ route('GET', '/api/facilitators/:id/trend', (ctx, p) => {
   const last3 = series.slice(-3).map((s) => s.overall);
   const fbs = store.all('feedbacks').filter((f) => f.facilitatorId === p.id).sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
   return ok({
-    facilitator: publicUser(u),
+    facilitator: hideArm(ctx, publicUser(u)),
     series,
     comparison: {
       basis: '本人の過去のみ。他のファシリテーターとは比較しません。',
@@ -1818,7 +1829,8 @@ route('GET', '/api/blind/lessons/:id', (ctx, p) => {
 route('GET', '/api/feedbacks', (ctx) => {
   let fbs = store.all('feedbacks').filter((f) => auth.canSeeFacilitator(ctx.user, f.facilitatorId));
   if (ctx.query.facilitatorId) fbs = fbs.filter((f) => f.facilitatorId === ctx.query.facilitatorId);
-  return ok(fbs.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)).slice(0, Number(ctx.query.limit || 100)));
+  return ok(fbs.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
+    .slice(0, Number(ctx.query.limit || 100)).map((f) => hideArm(ctx, f)));
 });
 
 route('POST', '/api/feedbacks', (ctx) => {

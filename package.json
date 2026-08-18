@@ -14,7 +14,8 @@
     "freeze": "node scripts/freeze-model.js",
     "passcode": "node scripts/set-passcode.js",
     "backup": "node scripts/backup.js",
-    "purge": "node scripts/purge.js"
+    "purge": "node scripts/purge.js",
+    "sample": "node scripts/sample-for-irr.js"
   },
   "dependencies": {},
   "devDependencies": {}
