@@ -672,6 +672,14 @@ views.lesson = async function lesson(id) {
       ${kpi('「わかった？」', `${s.empty_check_count}回`, '内容を問わない確認', {})}
     </div></div>` : ''}
 
+  <h2>NIJIN 評価契約の形</h2>
+  <div class="card" id="contractBox">
+    <p class="muted" style="font-size:12.5px">同じ授業を、Ranius プラットフォームの契約（不変条件つき）に通した結果です。
+      上の 0〜4 表示より厳しく出ます。<b>対外説明にはこちらを使ってください。</b></p>
+    <button id="loadContract">契約の形で見る</button>
+    <div id="contractOut"></div>
+  </div>
+
   ${fb ? `<h2>AIの所見</h2><div class="card"><div class="pre">${esc(fb.body)}</div>
     <div class="note">人格に触れる語が入っていたら、システムは保存を拒否します。</div></div>` : ''}
 
@@ -1086,6 +1094,45 @@ views.settings = async function settings() {
 // ---------- 画面のあとに動かすもの ----------
 const after = {
   lesson(id) {
+    const lc = $('#loadContract');
+    if (lc) {
+      lc.onclick = async () => {
+        lc.disabled = true;
+        $('#contractOut').innerHTML = '<div class="muted">計算中…</div>';
+        try {
+          const c = await api(`/api/lessons/${id}/contract`);
+          const e = c.evaluation;
+          const label = { scored: '確定', not_observable: '判定不能', review_required: '人間確認まち' };
+          const cls = { scored: 'verified', not_observable: '', review_required: 'unverified' };
+          $('#contractOut').innerHTML = `
+            <div class="grid g3" style="margin-top:10px">
+              ${kpi('状態', e.status === 'completed' ? '確定' : '人間確認まち', `レビュー要求 ${e.review_requests.length}件`)}
+              ${kpi('総合点', e.overall_score === null ? '出さない' : e.overall_score,
+    e.overall_score === null ? '1軸でも未確定なら出しません' : '5軸すべて確定')}
+              ${kpi('こちらの画面表示', c.ours.overall, '0〜4の平均（参考）')}
+            </div>
+            <div style="margin-top:10px">${e.dimensions.map((d) => `<div style="padding:7px 0;border-bottom:1px solid #f0f2f4">
+              <div class="row" style="justify-content:space-between">
+                <b>${esc(d.label)}</b>
+                <span><span class="badge ${cls[d.status]}">${label[d.status]}</span>
+                  ${d.level ? ` level ${d.level}／score ${d.score}` : ''}
+                  <span class="muted" style="font-size:11.5px">確からしさ ${d.confidence}</span></span>
+              </div>
+              ${d.reason_codes.length ? `<div class="muted" style="font-size:11.5px">${d.reason_codes.map(esc).join(' / ')}</div>` : ''}
+              ${d.not_observable.length ? `<div class="muted" style="font-size:11.5px">${d.not_observable.map(esc).join(' ')}</div>` : ''}
+            </div>`).join('')}</div>
+            <h3>この評価が見ていないもの</h3>
+            ${e.limitations.map((x) => `<div style="font-size:12.5px">・${esc(x)}</div>`).join('')}
+            <div class="callout warn" style="margin-top:10px">${esc(c.note)}</div>
+            <div class="note">ルーブリック版 <code>${esc(e.model_metadata.rubric_version)}</code>／
+              採点器 <code>${esc(e.model_metadata.scorer_version)}</code>／
+              観察 ${c.observation_counts.observations}件・候補 ${c.observation_counts.candidates}軸</div>`;
+        } catch (err) {
+          $('#contractOut').innerHTML = `<div class="err">${esc(err.message)}</div>`;
+          lc.disabled = false;
+        }
+      };
+    }
     const toggle = $('#toggleClip');
     if (toggle) toggle.onclick = () => { $('#clipForm').hidden = !$('#clipForm').hidden; };
     document.querySelectorAll('[data-clip-at]').forEach((b) => {

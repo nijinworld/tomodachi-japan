@@ -14,6 +14,7 @@ const exportLib = require('../lib/export');
 const importLib = require('../lib/import');
 const attendanceLib = require('../lib/attendance');
 const reportLib = require('../lib/report');
+const contractLib = require('../lib/contract');
 const crypto = require('node:crypto');
 const { findPersonalityTerms } = require('../lib/ja');
 const { id, round, mean, isoDate, weekKey, daysBetween } = require('../lib/util');
@@ -1418,6 +1419,36 @@ route('POST', '/api/import/lesson', (ctx) => {
     score,
     feedback,
   }, 201);
+}, { roles: ['admin', 'mentor', 'facilitator'] });
+
+// ===== NIJIN 評価契約の形での評価 =====
+// 同じ授業を、Ranius プラットフォームの契約（不変条件つき）に通したらどうなるかを返します。
+// 画面の 0〜4 表示より厳しく出ます。それが正しい姿です。
+route('GET', '/api/lessons/:id/contract', (ctx, p) => {
+  const l = store.get('lessons', p.id);
+  if (!l) throw fail(404, '授業がありません');
+  if (ctx.user.role === 'rater') throw fail(403, '評定者はこの経路を使いません。', 'FORBIDDEN');
+  assertCanSeeFacilitator(ctx, l.facilitatorId);
+  const utterances = store.all('utterances').filter((u) => u.lessonId === l.id);
+  if (!utterances.length) throw fail(400, 'この授業には書き起こしがありません。');
+  const klass = store.get('classes', l.classId);
+  const scored = scoreLesson(utterances, { roster: klass ? klass.studentIds : [] });
+  const { observation, evaluation } = contractLib.evaluate(scored, {
+    durationSec: (l.durationMin || 45) * 60,
+    analysisId: `ls-${l.id}`,
+  });
+  logView(ctx, 'lesson.contract.view', l.id);
+  return ok({
+    evaluation,
+    observation_counts: {
+      observations: observation.observations.length,
+      candidates: observation.dimension_candidates.length,
+      not_observable: observation.not_observable.length,
+    },
+    rubric: contractLib.loadRubric(),
+    ours: { overall: scored.overall, dims: Object.fromEntries(Object.entries(scored.dims).map(([k, v]) => [k, v.level])) },
+    note: 'こちらの画面表示（0〜4）と、契約の形では結果が違います。契約のほうが厳しく、確かめていないものを点にしません。',
+  });
 }, { roles: ['admin', 'mentor', 'facilitator'] });
 
 // ===== 本番の準備ができているか =====
