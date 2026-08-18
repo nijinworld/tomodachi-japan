@@ -295,20 +295,45 @@ views.blind = async function blind(lessonId) {
 
 async function blindLesson(lessonId) {
   const d = await api(`/api/blind/lessons/${lessonId}`);
+  const mine = d.my_rating || { dims: {}, na: [] };
   return `<h1>採点（盲検）</h1>
-  <p class="muted"><code>${esc(d.lessonId)}</code>／名簿 ${d.roster_size}人／冒頭${d.window_minutes}分</p>
+  <p class="muted"><code>${esc(d.lessonId)}</code>／名簿 ${d.roster_size}人／冒頭${d.window_minutes}分／
+    ルーブリック <code>${esc(d.rubric_version)}</code></p>
   <a href="#/blind">← 一覧にもどる</a>
-  <h2>観点</h2>
+
+  <div class="callout"><b>採点の前に。</b>
+    根拠は「離れた2場面以上、または『働きかけ→応答→変化』が完結した1つの連鎖」が要ります。<br>
+    <b>低い評価を付けるときは、「やらなかった」だけでは足りません。</b>
+    実際に機会があり、そこで学習を狭める応答があった、という事実が要ります。<br>
+    判断に足る材料が無ければ、点を付けずに<b>「判定不能」</b>を選んでください。**判定不能は低い点ではありません。**</div>
+
   <div class="card">
-    ${d.dimensions.map((dim) => `<div style="margin-bottom:14px">
-      <b>${dim.code}｜${esc(dim.name)}</b>
-      <div class="muted" style="font-size:12px">${esc(dim.question)}</div>
-      <ul class="muted" style="font-size:12px;margin:4px 0 6px">${dim.observable.map((o) => `<li>${esc(o)}</li>`).join('')}</ul>
-      <div class="row">${[0, 1, 2, 3, 4].map((v) => `<label style="margin:0"><input type="radio" name="d_${dim.code}" value="${v}"
-        ${d.my_rating && d.my_rating[dim.code] === v ? 'checked' : ''}> ${v}</label>`).join('')}</div>
-    </div>`).join('')}
+    <h3>点にしないもの</h3>
+    <div class="muted" style="font-size:12.5px">${d.never_scored_directly.map((x) => `・${esc(x)}`).join('<br>')}</div>
+  </div>
+
+  <h2>5つの軸</h2>
+  ${d.dimensions.map((dim) => `<div class="card">
+    <div class="row" style="justify-content:space-between">
+      <b>${esc(dim.label)}</b><span class="muted" style="font-size:12px">重み ${dim.weight}</span>
+    </div>
+    <div style="font-size:12.5px;margin:4px 0">${esc(dim.question)}</div>
+    ${dim.jsl_note ? `<div class="callout" style="margin:6px 0;font-size:12px">${esc(dim.jsl_note)}</div>` : ''}
+    ${dim.transcript_only_note ? `<div class="callout warn" style="margin:6px 0;font-size:12px">${esc(dim.transcript_only_note)}</div>` : ''}
+    <div style="margin:8px 0">
+      ${[1, 2, 3, 4, 5].map((v) => `<label class="anchor" style="display:block;margin:3px 0;padding:6px 8px;border:1px solid var(--line);border-radius:7px;font-size:12.5px;cursor:pointer">
+        <input type="radio" name="k_${dim.key}" value="${v}" ${mine.dims[dim.key] === v ? 'checked' : ''}>
+        <b>${v}</b>　${esc(dim.anchors[String(v)])}</label>`).join('')}
+      <label style="display:block;margin:6px 0 0;padding:6px 8px;border:1px dashed var(--line);border-radius:7px;font-size:12.5px;cursor:pointer">
+        <input type="radio" name="k_${dim.key}" value="na" ${(mine.na || []).includes(dim.key) ? 'checked' : ''}>
+        <b>判定不能</b>　この記録からは判断できない（低い点ではありません）</label>
+    </div>
+    ${dim.caution ? `<div class="note">${esc(dim.caution)}</div>` : ''}
+  </div>`).join('')}
+
+  <div class="card">
     <div class="row"><button class="primary" id="saveBlind">保存する</button>
-      <span class="muted">0＝観察できない／4＝一貫して成立</span></div>
+      <span class="muted">全部の軸に、点か「判定不能」を選んでください</span></div>
     <div id="bmsg"></div>
   </div>
   <h2>書き起こし</h2>
@@ -837,7 +862,10 @@ views.irr = async function irrView() {
   const hv = r.human_vs_human;
   return `<h1>評価者間一致（IRR）</h1>
   <p class="muted">目標 .65。<b>当社の実測はまだありません</b>（下の数字はいま入っている採点から計算したものです）。<br>
-    目標の根拠：MET Project では評定者2名 × 授業2本で .67 ${evBadge('met_two_raters')}。期限 ${r.deadline}。</p>
+    目標の根拠：MET Project では評定者2名 × 授業2本で .67 ${evBadge('met_two_raters')}。期限 ${r.deadline}。<br>
+    ルーブリック版 <code>${esc(r.rubric_version)}</code>（1〜5段階）。</p>
+  ${r.version_note ? `<div class="callout warn">${esc(r.version_note)}<br>
+    ${Object.entries(r.versions).map(([v, n2]) => `<code>${esc(v)}</code> ${n2}件`).join('　')}</div>` : ''}
   ${!hv ? '<div class="callout warn">まだ二重コーディングがありません。授業の画面から、別々の評定者2名で入れてください。</div>' : `
   <div class="grid g4">
     ${kpi('二次重みつきカッパ', hv.overall.qwk, `n=${hv.overall.n_ratings}（授業 ${hv.overall.n_lessons}本）`, { evidence: 'irr_measured' })}
@@ -1315,19 +1343,39 @@ Object.assign(after, {
   },
 
   blind(lessonId) {
+    // 選んだアンカーを目で分かるようにする（読み飛ばしを減らすため）
+    document.querySelectorAll('.anchor input, input[value="na"]').forEach((el) => {
+      const mark = () => {
+        document.querySelectorAll(`input[name="${el.name}"]`).forEach((x) => {
+          const box = x.closest('label');
+          if (box) box.style.background = x.checked ? 'var(--accentSoft)' : '';
+        });
+      };
+      el.onchange = mark;
+      mark();
+    });
     const save = $('#saveBlind');
     if (!save) return;
     save.onclick = async () => {
       const dims = {};
-      let missing = false;
-      for (const dim of META.rubric.dimensions) {
-        const el = document.querySelector(`input[name="d_${dim.code}"]:checked`);
-        if (!el) { missing = true; break; }
-        dims[dim.code] = Number(el.value);
+      const na = [];
+      const missing = [];
+      document.querySelectorAll('input[type=radio]').forEach((el) => {
+        if (!el.name.startsWith('k_')) return;
+      });
+      const keys = [...new Set([...document.querySelectorAll('input[name^="k_"]')].map((el) => el.name.slice(2)))];
+      for (const key of keys) {
+        const el = document.querySelector(`input[name="k_${key}"]:checked`);
+        if (!el) { missing.push(key); continue; }
+        if (el.value === 'na') na.push(key);
+        else dims[key] = Number(el.value);
       }
-      if (missing) { $('#bmsg').innerHTML = '<div class="err">すべての観点に点を付けてください。</div>'; return; }
+      if (missing.length) {
+        $('#bmsg').innerHTML = `<div class="err">${missing.length}軸が未入力です。判断できない軸は「判定不能」を選んでください。</div>`;
+        return;
+      }
       try {
-        await api(`/api/lessons/${lessonId}/ratings`, { method: 'POST', body: { raterId: ME.id, dims, blind: true } });
+        await api(`/api/lessons/${lessonId}/ratings`, { method: 'POST', body: { raterId: ME.id, dims, na, blind: true } });
         location.hash = '#/blind';
       } catch (e) { $('#bmsg').innerHTML = `<div class="err">${esc(e.message)}</div>`; }
     };

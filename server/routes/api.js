@@ -652,11 +652,20 @@ route('POST', '/api/lessons/:id/ratings', (ctx, p) => {
   if (!l) throw fail(404, '授業がありません');
   const b = ctx.body || {};
   if (!b.raterId || !b.dims) throw fail(400, 'raterId と dims は必須です');
-  const rubric = loadRubric();
-  for (const [code, v] of Object.entries(b.dims)) {
-    if (!rubric.dimensions.find((d) => d.code === code)) throw fail(400, `知らない観点: ${code}`);
-    if (!Number.isInteger(v) || v < 0 || v > 4) throw fail(400, `${code} は 0〜4 の整数で入れてください`);
+  const nihongo = contractLib.loadRubric();
+  const keys = nihongo.dimensions.map((d) => d.key);
+  const na = Array.isArray(b.na) ? b.na : [];
+  for (const k of na) {
+    if (!keys.includes(k)) throw fail(400, `知らない軸: ${k}`);
   }
+  for (const [key, v] of Object.entries(b.dims)) {
+    if (!keys.includes(key)) throw fail(400, `知らない軸: ${key}`);
+    if (na.includes(key)) throw fail(400, `${key} は判定不能と採点の両方になっています`);
+    // 1〜5。0 は使いません（判定不能は na で表します）。
+    if (!Number.isInteger(v) || v < 1 || v > 5) throw fail(400, `${key} は 1〜5 の整数で入れてください`);
+  }
+  const missing = keys.filter((k) => b.dims[k] === undefined && !na.includes(k));
+  if (missing.length) throw fail(400, `${missing.length}軸が未入力です。採点できない軸は「判定不能」を選んでください。`);
   // 評定者は自分の名前でしか入れられない（他人の採点を書き換えられないように）
   if (ctx.user.role === 'rater' && b.raterId !== ctx.user.id) {
     throw fail(403, '自分以外の評定者として保存することはできません。', 'FORBIDDEN');
@@ -668,7 +677,10 @@ route('POST', '/api/lessons/:id/ratings', (ctx, p) => {
     raterId: b.raterId,
     blind: b.blind !== false,
     windowMinutes: b.windowMinutes || loadRubric().window.minutes,
+    // 版を必ず残す。版をまたいだ一致を、うっかり混ぜて計算しないため。
+    rubricVersion: nihongo.rubric_id,
     dims: b.dims,
+    na,
     note: b.note || '',
     createdAt: new Date().toISOString(),
   };
@@ -791,18 +803,37 @@ route('POST', '/api/rescore', (ctx) => {
 }, { roles: ['admin'] });
 
 // ===== IRR =====
-route('GET', '/api/irr', () => {
-  const ratings = store.all('ratings');
+route('GET', '/api/irr', (ctx) => {
+  const all = store.all('ratings');
+  const current = contractLib.loadRubric().rubric_id;
+  // 版が違う採点を混ぜて一致を計算しない。既定は現行版だけ。
+  const version = ctx.query.rubricVersion || current;
+  const ratings = version === 'all' ? all : all.filter((r) => (r.rubricVersion || 'legacy') === version);
+  const versions = {};
+  for (const r of all) {
+    const v = r.rubricVersion || 'legacy';
+    versions[v] = (versions[v] || 0) + 1;
+  }
   const pairs = buildHumanPairs(ratings);
   const human = pairs.length ? irrLib.report(pairs) : null;
 
   // AI と人間の一致（参考値。IRRの目標判定には使わない）
+  // 契約の軸で突き合わせる。こちらの観察層が候補を出せない軸は、比べようがないので飛ばす。
   const aiPairs = [];
   for (const r of ratings) {
-    const sc = store.all('scores').find((s) => s.lessonId === r.lessonId && s.source === 'ai');
-    if (!sc) continue;
-    for (const [code, v] of Object.entries(r.dims || {})) {
-      if (sc.dims[code]) aiPairs.push({ lessonId: r.lessonId, dim: code, a: sc.dims[code].level, b: v });
+    if ((r.rubricVersion || 'legacy') === 'legacy') continue;
+    const lesson = store.get('lessons', r.lessonId);
+    const utts = store.all('utterances').filter((u) => u.lessonId === r.lessonId);
+    if (!lesson || !utts.length) continue;
+    const klass = store.get('classes', lesson.classId);
+    let ev;
+    try {
+      ev = contractLib.evaluate(scoreLesson(utts, { roster: klass ? klass.studentIds : [] }),
+        { durationSec: (lesson.durationMin || 45) * 60, analysisId: `ls-${lesson.id}` }).evaluation;
+    } catch { continue; }
+    for (const [key, v] of Object.entries(r.dims || {})) {
+      const d = ev.dimensions.find((x) => x.key === key);
+      if (d && d.status === 'scored') aiPairs.push({ lessonId: r.lessonId, dim: key, a: d.level, b: v });
     }
   }
   const ai = aiPairs.length ? irrLib.report(aiPairs) : null;
@@ -821,6 +852,11 @@ route('GET', '/api/irr', () => {
     target: 0.65,
     deadline: '2026-10-20',
     evidence_id: 'met_two_raters',
+    rubric_version: version,
+    versions,
+    version_note: Object.keys(versions).length > 1
+      ? '⚠️ 複数のルーブリック版の採点が入っています。版をまたいだ一致は計算しません（混ぜると意味が変わるため）。'
+      : null,
     note: '判定に使うのは human_vs_human です。ai_vs_human は参考値であって、器具の信頼性ではありません。',
   });
 }, { roles: ['admin', 'mentor', 'staff'] });
@@ -1718,6 +1754,9 @@ route('GET', '/api/blind/queue', (ctx) => {
 route('GET', '/api/blind/lessons/:id', (ctx, p) => {
   const l = store.get('lessons', p.id);
   if (!l) throw fail(404, '授業がありません');
+  // 評定者が使うのは NIJIN の評価ルーブリック（5軸・1〜5段階）です。
+  // こちらの 0〜4 の観点は、現場の振り返り用であって、一致を測る器具ではありません。
+  const nihongo = contractLib.loadRubric();
   const rubric = loadRubric();
   const win = rubric.window.minutes * 60;
   const klass = store.get('classes', l.classId);
@@ -1734,11 +1773,23 @@ route('GET', '/api/blind/lessons/:id', (ctx, p) => {
     lessonId: l.id,
     roster_size: roster.length,
     window_minutes: rubric.window.minutes,
-    dimensions: rubric.dimensions.map((d) => ({
-      code: d.code, name: d.name, question: d.question, observable: d.observable, scale: rubric.scale,
+    rubric_version: nihongo.rubric_id,
+    scale: nihongo.scale,
+    evidence_minimum: nihongo.evidence_minimum,
+    never_scored_directly: nihongo.never_scored_directly,
+    dimensions: nihongo.dimensions.map((d) => ({
+      key: d.key,
+      label: d.label,
+      weight: d.weight,
+      question: d.question,
+      jsl_note: d.jsl_note || null,
+      anchors: d.anchors,
+      caution: d.caution || null,
+      transcript_only_note: (d.transcript_signals && d.transcript_signals.length === 0)
+        ? 'この軸は書き起こしからは判定できません。読んで分からなければ「判定不能」を選んでください。' : null,
     })),
     utterances,
-    my_rating: mineRating ? mineRating.dims : null,
+    my_rating: mineRating ? { dims: mineRating.dims, na: mineRating.na || [], rubricVersion: mineRating.rubricVersion } : null,
   });
 }, { roles: ['rater', 'admin'] });
 

@@ -257,9 +257,60 @@ test('撤退基準：測っていない指標は「触れていない」に数�
   });
 
   await testAsync('API：評定者は他人の名前で採点を保存できない', async () => {
+    // 契約の5軸・1〜5で送る（旧い 0〜4 の観点ではない）
+    const dims = {
+      psychological_safety_and_participation_choice: 3,
+      dialogic_co_construction: 3,
+      productive_departure_and_response: 3,
+      concrete_abstract_cycle: 3,
+      output_quality_and_transformation: 3,
+    };
     await expectFail(
-      call('POST', '/api/lessons/ls_t/ratings', { as: 'u_r', body: { raterId: 'u_a', dims: { CI: 2 } } }),
+      call('POST', '/api/lessons/ls_t/ratings', { as: 'u_r', body: { raterId: 'u_a', dims } }),
       'FORBIDDEN', 'なりすまし',
+    );
+  });
+
+  await testAsync('採点：軸を1つでも落としたら保存できない', async () => {
+    await expectFail(
+      call('POST', '/api/lessons/ls_t/ratings', {
+        as: 'u_r',
+        body: { raterId: 'u_r', dims: { psychological_safety_and_participation_choice: 3 } },
+      }),
+      400, '未入力',
+    );
+  });
+
+  await testAsync('採点：判定不能は低い点ではなく、別に記録される', async () => {
+    const r = await call('POST', '/api/lessons/ls_t/ratings', {
+      as: 'u_r',
+      body: {
+        raterId: 'u_r',
+        dims: { psychological_safety_and_participation_choice: 4, dialogic_co_construction: 3 },
+        na: ['productive_departure_and_response', 'concrete_abstract_cycle', 'output_quality_and_transformation'],
+      },
+    });
+    assert.strictEqual(r.body.rubricVersion, 'nijin-nihongo-1.0.0', '版を必ず残す');
+    assert.strictEqual(r.body.na.length, 3);
+    assert.ok(r.body.dims.productive_departure_and_response === undefined, '判定不能に点を入れない');
+  });
+
+  await testAsync('採点：0 は使えない（判定不能は na で表す）', async () => {
+    await expectFail(
+      call('POST', '/api/lessons/ls_t/ratings', {
+        as: 'u_r',
+        body: {
+          raterId: 'u_r',
+          dims: {
+            psychological_safety_and_participation_choice: 0,
+            dialogic_co_construction: 3,
+            productive_departure_and_response: 3,
+            concrete_abstract_cycle: 3,
+            output_quality_and_transformation: 3,
+          },
+        },
+      }),
+      400, '0は不可',
     );
   });
 

@@ -245,20 +245,37 @@ function run() {
   }
 
   // --- 外部評定者2名による盲検二重コーディング（16本） ---
+  // 評定者は NIJIN の5軸（1〜5）で採点する。こちらの 0〜4 の観点ではない。
+  const contractLib = require('../server/lib/contract');
+  const nihongo = contractLib.loadRubric();
   const sample = lessons.filter((_, i) => i % 6 === 0).slice(0, 16);
   for (const l of sample) {
     const sc = store.all('scores').find((s) => s.lessonId === l.id);
     if (!sc) continue;
+    // 契約の形に通して、AIが候補を出せた軸だけを土台にする
+    const utts = store.all('utterances').filter((u) => u.lessonId === l.id);
+    const klass = store.get('classes', l.classId);
+    let ev;
+    try {
+      ev = contractLib.evaluate({ ...sc, events: sc.events },
+        { durationSec: (l.durationMin || 45) * 60, analysisId: `ls-${l.id}` }).evaluation;
+    } catch { continue; }
     for (const rater of [rater1, rater2]) {
       const dims = {};
-      for (const [code, v] of Object.entries(sc.dims)) {
-        // 人間はAIとだいたい合うが、ずれる。ここのずれ幅がそのまま IRR になる
-        let lv = v.level + (chance(0.30) ? (chance(0.5) ? 1 : -1) : 0);
-        dims[code] = Math.max(0, Math.min(4, lv));
+      const na = [];
+      for (const dim of nihongo.dimensions) {
+        const ai = ev.dimensions.find((x) => x.key === dim.key);
+        // AIが候補を出せない軸は、人間も書き起こしだけでは決めにくい。
+        // 一定の割合で「判定不能」が出るようにしてある（実際そうなるため）。
+        const base = ai && ai.level ? ai.level : 3;
+        if ((!ai || ai.status !== 'scored') && chance(0.45)) { na.push(dim.key); continue; }
+        const lv = base + (chance(0.30) ? (chance(0.5) ? 1 : -1) : 0);
+        dims[dim.key] = Math.max(1, Math.min(5, lv));
       }
       store.insert('ratings', {
         id: id('rt'), lessonId: l.id, raterId: rater.id, blind: true, windowMinutes: 15,
-        dims, note: '', createdAt: new Date().toISOString(), demo: true,
+        rubricVersion: nihongo.rubric_id, dims, na, note: '',
+        createdAt: new Date().toISOString(), demo: true,
       });
     }
   }

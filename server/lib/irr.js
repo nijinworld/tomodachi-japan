@@ -78,7 +78,8 @@ function icc21(a, b) {
 }
 
 // pairs: [{ lessonId, dim, a, b }]
-function report(pairs, target = 0.65) {
+// 契約の段階は 1〜5。旧い 0〜4 の採点と混ざらないよう、呼び出し側で版を分けること。
+function report(pairs, target = 0.65, minCat = 1, maxCat = 5) {
   const byDim = {};
   for (const p of pairs) {
     if (!byDim[p.dim]) byDim[p.dim] = { a: [], b: [] };
@@ -89,7 +90,7 @@ function report(pairs, target = 0.65) {
   for (const [dim, v] of Object.entries(byDim)) {
     dims[dim] = {
       n: v.a.length,
-      qwk: round(quadraticWeightedKappa(v.a, v.b), 3),
+      qwk: round(quadraticWeightedKappa(v.a, v.b, minCat, maxCat), 3),
       exact: round(exactAgreement(v.a, v.b), 3),
       adjacent: round(adjacentAgreement(v.a, v.b), 3),
       icc: round(icc21(v.a, v.b), 3),
@@ -100,7 +101,7 @@ function report(pairs, target = 0.65) {
   const overall = {
     n_ratings: pairs.length,
     n_lessons: new Set(pairs.map((p) => p.lessonId)).size,
-    qwk: round(quadraticWeightedKappa(allA, allB), 3),
+    qwk: round(quadraticWeightedKappa(allA, allB, minCat, maxCat), 3),
     exact: round(exactAgreement(allA, allB), 3),
     adjacent: round(adjacentAgreement(allA, allB), 3),
     icc: round(icc21(allA, allB), 3),
