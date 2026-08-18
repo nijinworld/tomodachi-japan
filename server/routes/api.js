@@ -76,7 +76,9 @@ function collectMetrics() {
   const a = armMean('A');
   const b = armMean('B');
 
-  const ratings = store.all('ratings');
+  // 版をまたいだ採点を混ぜて一致を計算しない。撤退基準の判定に使う数字なので、なおさら。
+  const currentRubric = contractLib.loadRubric().rubric_id;
+  const ratings = store.all('ratings').filter((r) => (r.rubricVersion || 'legacy') === currentRubric);
   const irrPairs = buildHumanPairs(ratings);
   const irrReport = irrPairs.length ? irrLib.report(irrPairs) : null;
 
@@ -1510,6 +1512,15 @@ route('GET', '/api/readiness', () => {
   const demoRecords = ['users', 'students', 'classes', 'lessons', 'clips', 'meetings', 'costItems', 'surveyCycles']
     .reduce((a, c) => a + store.all(c).filter((r) => r.demo).length, 0);
 
+  // 現行版で、2名以上に採点された授業の本数
+  const currentRubricId = contractLib.loadRubric().rubric_id;
+  const byLesson = {};
+  for (const r of store.all('ratings')) {
+    if ((r.rubricVersion || 'legacy') !== currentRubricId) continue;
+    (byLesson[r.lessonId] = byLesson[r.lessonId] || new Set()).add(r.raterId);
+  }
+  const doubleCoded = Object.values(byLesson).filter((s2) => s2.size >= 2).length;
+
   const checks = [
     {
       id: 'demo_off', label: 'デモ表示が切れている', group: '前提',
@@ -1577,10 +1588,20 @@ route('GET', '/api/readiness', () => {
       how: '凍結し直して、全授業を再スコアする',
     },
     {
+      id: 'double_coded', label: '盲検の二重コーディングが16本以上ある', group: '測る',
+      ok: doubleCoded >= 16,
+      detail: `${doubleCoded} 本（現行版 ${contractLib.loadRubric().rubric_id} の採点のみ）`,
+      how: '外部評定者2名に rater アカウントを渡し、同じ授業をそれぞれ採点してもらう',
+    },
+    {
       id: 'irr', label: '評価者間一致が .65 に届いている', group: '測る',
       ok: metrics.irr_qwk !== null && metrics.irr_qwk >= 0.65,
-      detail: metrics.irr_qwk === null ? '未測定です。' : `いま ${metrics.irr_qwk}（目標 .65／期限 2026-10-20）`,
-      how: '外部評定者2名に rater アカウントを渡し、盲検で16本以上を二重コーディングする',
+      detail: metrics.irr_qwk === null
+        ? '未測定です（現行版の二重コーディングがありません）。'
+        : `いま ${metrics.irr_qwk}（目標 .65／期限 2026-10-20／版 ${contractLib.loadRubric().rubric_id}）`,
+      how: metrics.irr_qwk !== null && metrics.irr_qwk < 0.65
+        ? 'ルーブリックの記述語（行動アンカー）を直す。スコアの計算式ではない'
+        : '外部評定者2名に rater アカウントを渡し、盲検で16本以上を二重コーディングする',
     },
     {
       id: 'mentor_log', label: 'メンターの記録が入り始めている', group: '測る',
