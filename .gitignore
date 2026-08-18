@@ -1,0 +1,16 @@
+# 子どものことばは、絶対にリポジトリへ入れない。
+# data/ には授業の書き起こし（発話）と、アンケートの回答が入ります。
+# ここを緩めた瞬間に、同意の約束が崩れます。
+data/
+backups/
+test/.tmp-data/
+test/.tmp-contract/
+
+# 合言葉のハッシュとセッションの秘密鍵も data/settings.json に入ります
+*.pem
+certs/
+
+node_modules/
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ranius日本語 — ともだちじゃぱん</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="halt" class="halt" hidden></div>
+<div id="demo" class="demo-bar" hidden>⚠️ デモデータです。実績ではありません。スクリーンショットを資料に貼らないでください。</div>
+<div class="app">
+  <nav class="side" hidden>
+    <div class="brand">
+      <div class="brand-name">Ranius<span>日本語</span></div>
+      <div class="brand-sub">ともだちじゃぱん 運用システム</div>
+    </div>
+
+    <a href="#/" data-nav data-roles="admin,mentor,facilitator,staff">今週</a>
+
+    <div class="nav-group" data-roles="rater">採点</div>
+    <a href="#/blind" data-nav data-roles="rater,admin">盲検の採点</a>
+
+    <div class="nav-group" data-roles="admin,mentor,facilitator">授業</div>
+    <a href="#/lessons" data-nav data-roles="admin,mentor,facilitator">授業と採点</a>
+    <a href="#/import" data-nav data-roles="admin,mentor,facilitator">書き起こしの取り込み</a>
+    <a href="#/facilitators" data-nav data-roles="admin,mentor">先生（本人の推移）</a>
+    <a href="#/surveys" data-nav data-roles="admin,mentor,facilitator">子どものアンケート</a>
+    <a href="#/children" data-nav data-roles="admin,mentor,facilitator">子どもの様子</a>
+    <a href="#/archive" data-nav data-roles="admin,mentor,facilitator">アーカイブ</a>
+    <a href="#/meetings" data-nav data-roles="admin,mentor,facilitator">チームの週次</a>
+
+    <div class="nav-group" data-roles="admin,mentor,staff">測る</div>
+    <a href="#/report" data-nav data-roles="admin,mentor">週次サマリ</a>
+    <a href="#/mentor" data-nav data-roles="admin,mentor,staff">メンターの記録</a>
+    <a href="#/irr" data-nav data-roles="admin,mentor,staff">評価者間一致</a>
+    <a href="#/instrument" data-nav data-roles="admin,mentor,staff">器具の健全性</a>
+    <a href="#/cost" data-nav data-roles="admin,mentor,staff">費用（3シナリオ）</a>
+    <a href="#/ab" data-nav data-roles="admin,mentor,staff">A/B</a>
+
+    <div class="nav-group" data-roles="admin,mentor,facilitator,staff,rater">止める</div>
+    <a href="#/kill" data-nav data-roles="admin,mentor,facilitator,staff,rater">撤退基準・セーフガーディング</a>
+
+    <div class="nav-group" data-roles="admin,staff">管理</div>
+    <a href="#/people" data-nav data-roles="admin">人とクラス</a>
+    <a href="#/records" data-nav data-roles="admin,mentor,staff">保存と閲覧の記録</a>
+    <a href="#/readiness" data-nav data-roles="admin,mentor,staff">本番の準備</a>
+    <a href="#/model" data-nav data-roles="admin,mentor,staff">モデル版</a>
+    <a href="#/export" data-nav data-roles="admin,staff">書き出し</a>
+    <a href="#/settings" data-nav data-roles="admin,staff">設定</a>
+
+    <div class="side-foot">
+      <div id="me"></div>
+      <div style="margin-top:10px">比較対象は、本人の過去だけです。<br>先生の順位は作りません。</div>
+    </div>
+  </nav>
+  <main id="main"><div class="loading">読み込み中…</div></main>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,578 @@
+[
+  {
+    "id": "rt_msy5ns6lk6e",
+    "lessonId": "ls_msy5nrv407",
+    "raterId": "u_rater1",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 2,
+      "TD": 1,
+      "CF": 4,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 3
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6f",
+    "lessonId": "ls_msy5nrv407",
+    "raterId": "u_rater2",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 3,
+      "TD": 2,
+      "CF": 3,
+      "NM": 3,
+      "SC": 3,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6g",
+    "lessonId": "ls_msy5nrv71aj",
+    "raterId": "u_rater1",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 2,
+      "TD": 2,
+      "CF": 3,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6h",
+    "lessonId": "ls_msy5nrv71aj",
+    "raterId": "u_rater2",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 3,
+      "TD": 2,
+      "CF": 3,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6i",
+    "lessonId": "ls_msy5nrv82kx",
+    "raterId": "u_rater1",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 3,
+      "TD": 1,
+      "CF": 3,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 3
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6j",
+    "lessonId": "ls_msy5nrv82kx",
+    "raterId": "u_rater2",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 3,
+      "TD": 1,
+      "CF": 3,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6k",
+    "lessonId": "ls_msy5nrv93v8",
+    "raterId": "u_rater1",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 2,
+      "TD": 2,
+      "CF": 3,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6l",
+    "lessonId": "ls_msy5nrv93v8",
+    "raterId": "u_rater2",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 1,
+      "TD": 2,
+      "CF": 3,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 3
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6m",
+    "lessonId": "ls_msy5nrve54k",
+    "raterId": "u_rater1",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 2,
+      "TD": 2,
+      "CF": 4,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6n",
+    "lessonId": "ls_msy5nrve54k",
+    "raterId": "u_rater2",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 2,
+      "TD": 2,
+      "CF": 4,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6o",
+    "lessonId": "ls_msy5nrvf6e4",
+    "raterId": "u_rater1",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 3,
+      "TD": 1,
+      "CF": 3,
+      "NM": 3,
+      "SC": 3,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6p",
+    "lessonId": "ls_msy5nrvf6e4",
+    "raterId": "u_rater2",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 3,
+      "TD": 2,
+      "CF": 3,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6q",
+    "lessonId": "ls_msy5nrvg7o4",
+    "raterId": "u_rater1",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 3,
+      "TD": 2,
+      "CF": 4,
+      "NM": 4,
+      "SC": 2,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6r",
+    "lessonId": "ls_msy5nrvg7o4",
+    "raterId": "u_rater2",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 2,
+      "TD": 2,
+      "CF": 4,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 3
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6s",
+    "lessonId": "ls_msy5nrvh8xy",
+    "raterId": "u_rater1",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 1,
+      "TD": 1,
+      "CF": 3,
+      "NM": 1,
+      "SC": 4,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6t",
+    "lessonId": "ls_msy5nrvh8xy",
+    "raterId": "u_rater2",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 2,
+      "TD": 1,
+      "CF": 3,
+      "NM": 1,
+      "SC": 4,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6u",
+    "lessonId": "ls_msy5nrvia75",
+    "raterId": "u_rater1",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 2,
+      "TD": 2,
+      "CF": 4,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6v",
+    "lessonId": "ls_msy5nrvia75",
+    "raterId": "u_rater2",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 2,
+      "TD": 1,
+      "CF": 4,
+      "NM": 4,
+      "SC": 2,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6w",
+    "lessonId": "ls_msy5nrvibg2",
+    "raterId": "u_rater1",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 2,
+      "TD": 2,
+      "CF": 3,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6x",
+    "lessonId": "ls_msy5nrvibg2",
+    "raterId": "u_rater2",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 1,
+      "TD": 2,
+      "CF": 3,
+      "NM": 4,
+      "SC": 2,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6y",
+    "lessonId": "ls_msy5nrvmcop",
+    "raterId": "u_rater1",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 4,
+      "TD": 3,
+      "CF": 4,
+      "NM": 2,
+      "SC": 4,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk6z",
+    "lessonId": "ls_msy5nrvmcop",
+    "raterId": "u_rater2",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 3,
+      "TD": 2,
+      "CF": 4,
+      "NM": 3,
+      "SC": 2,
+      "OUT": 3
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk70",
+    "lessonId": "ls_msy5nrvndx9",
+    "raterId": "u_rater1",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 3,
+      "TD": 2,
+      "CF": 2,
+      "NM": 4,
+      "SC": 4,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk71",
+    "lessonId": "ls_msy5nrvndx9",
+    "raterId": "u_rater2",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 3,
+      "TD": 2,
+      "CF": 3,
+      "NM": 4,
+      "SC": 4,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk72",
+    "lessonId": "ls_msy5nrvnf5l",
+    "raterId": "u_rater1",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 2,
+      "TD": 2,
+      "CF": 3,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk73",
+    "lessonId": "ls_msy5nrvnf5l",
+    "raterId": "u_rater2",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 2,
+      "TD": 2,
+      "CF": 3,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk74",
+    "lessonId": "ls_msy5nrvogdr",
+    "raterId": "u_rater1",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 3,
+      "TD": 1,
+      "CF": 4,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 3
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk75",
+    "lessonId": "ls_msy5nrvogdr",
+    "raterId": "u_rater2",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 2,
+      "TD": 0,
+      "CF": 4,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk76",
+    "lessonId": "ls_msy5nrvphlt",
+    "raterId": "u_rater1",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 3,
+      "TD": 2,
+      "CF": 4,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk77",
+    "lessonId": "ls_msy5nrvphlt",
+    "raterId": "u_rater2",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 3,
+      "TD": 2,
+      "CF": 4,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 3
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk78",
+    "lessonId": "ls_msy5nrvqith",
+    "raterId": "u_rater1",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 3,
+      "TD": 2,
+      "CF": 3,
+      "NM": 4,
+      "SC": 2,
+      "OUT": 4
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  },
+  {
+    "id": "rt_msy5ns6lk79",
+    "lessonId": "ls_msy5nrvqith",
+    "raterId": "u_rater2",
+    "blind": true,
+    "windowMinutes": 15,
+    "dims": {
+      "CI": 3,
+      "TD": 2,
+      "CF": 3,
+      "NM": 4,
+      "SC": 3,
+      "OUT": 3
+    },
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.197Z",
+    "demo": true
+  }
+]

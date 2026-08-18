@@ -1,0 +1,87 @@
+[
+  {
+    "id": "set_demo_mode",
+    "key": "demo_mode",
+    "value": true
+  },
+  {
+    "id": "set_survey_cycles",
+    "key": "survey_cycles",
+    "value": {
+      "u_msy5nri201|2026-C1": {
+        "returned_at": "2026-08-18T04:21:13.197Z",
+        "action_declared_at": "2026-08-18T04:21:13.197Z",
+        "discussed_with_students_at": "2026-08-18T04:21:13.197Z",
+        "action": "指名のあと3つ数えてから次に行く"
+      },
+      "u_msy5nri201|2026-C2": {
+        "returned_at": "2026-08-18T04:21:13.197Z",
+        "action_declared_at": "2026-08-18T04:21:13.198Z",
+        "discussed_with_students_at": "2026-08-18T04:21:13.198Z",
+        "action": "指名のあと3つ数えてから次に行く"
+      },
+      "u_msy5nri302|2026-C1": {
+        "returned_at": "2026-08-18T04:21:13.198Z",
+        "action_declared_at": "2026-08-18T04:21:13.198Z",
+        "discussed_with_students_at": "2026-08-18T04:21:13.198Z",
+        "action": "指名のあと3つ数えてから次に行く"
+      },
+      "u_msy5nri302|2026-C2": {
+        "returned_at": "2026-08-18T04:21:13.198Z",
+        "action_declared_at": "2026-08-18T04:21:13.198Z",
+        "discussed_with_students_at": "2026-08-18T04:21:13.198Z",
+        "action": "指名のあと3つ数えてから次に行く"
+      },
+      "u_msy5nri303|2026-C1": {
+        "returned_at": "2026-08-18T04:21:13.198Z",
+        "action_declared_at": "2026-08-18T04:21:13.198Z",
+        "discussed_with_students_at": "2026-08-18T04:21:13.198Z",
+        "action": "指名のあと3つ数えてから次に行く"
+      },
+      "u_msy5nri303|2026-C2": {
+        "returned_at": "2026-08-18T04:21:13.198Z",
+        "action_declared_at": "2026-08-18T04:21:13.198Z",
+        "discussed_with_students_at": "2026-08-18T04:21:13.198Z",
+        "action": "指名のあと3つ数えてから次に行く"
+      },
+      "u_msy5nri304|2026-C1": {
+        "returned_at": "2026-08-18T04:21:13.198Z",
+        "action_declared_at": "2026-08-18T04:21:13.198Z",
+        "discussed_with_students_at": "2026-08-18T04:21:13.198Z",
+        "action": "指名のあと3つ数えてから次に行く"
+      },
+      "u_msy5nri304|2026-C2": {
+        "returned_at": "2026-08-18T04:21:13.198Z",
+        "action_declared_at": "2026-08-18T04:21:13.198Z",
+        "discussed_with_students_at": "2026-08-18T04:21:13.198Z",
+        "action": "指名のあと3つ数えてから次に行く"
+      },
+      "u_msy5nri305|2026-C1": {
+        "returned_at": "2026-08-18T04:21:13.198Z",
+        "action_declared_at": "2026-08-18T04:21:13.198Z",
+        "discussed_with_students_at": "2026-08-18T04:21:13.198Z",
+        "action": "指名のあと3つ数えてから次に行く"
+      },
+      "u_msy5nri305|2026-C2": {
+        "returned_at": "2026-08-18T04:21:13.198Z",
+        "action_declared_at": "2026-08-18T04:21:13.198Z",
+        "discussed_with_students_at": "2026-08-18T04:21:13.198Z",
+        "action": "指名のあと3つ数えてから次に行く"
+      },
+      "u_msy5nri306|2026-C1": {
+        "returned_at": "2026-08-18T04:21:13.198Z"
+      },
+      "u_msy5nri306|2026-C2": {
+        "returned_at": "2026-08-18T04:21:13.198Z",
+        "action_declared_at": "2026-08-18T04:21:13.198Z",
+        "discussed_with_students_at": "2026-08-18T04:21:13.198Z",
+        "action": "指名のあと3つ数えてから次に行く"
+      }
+    }
+  },
+  {
+    "id": "set_session_secret",
+    "key": "session_secret",
+    "value": "7e47b89e839af90dd2c69e8e5ac828f71827f52f895924572b9e8beabd8c6cac"
+  }
+]

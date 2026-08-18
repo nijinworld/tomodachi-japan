@@ -1,0 +1,770 @@
+[
+  {
+    "id": "st_0_0",
+    "name": "あかり1",
+    "arm": "A",
+    "classId": "cl_0",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_0_1",
+    "name": "はると1",
+    "arm": "A",
+    "classId": "cl_0",
+    "joinedAt": "2026-06-09",
+    "status": "left",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_0_2",
+    "name": "ゆい1",
+    "arm": "A",
+    "classId": "cl_0",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_0_3",
+    "name": "そうた1",
+    "arm": "A",
+    "classId": "cl_0",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_0_4",
+    "name": "みお1",
+    "arm": "A",
+    "classId": "cl_0",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_0_5",
+    "name": "れん1",
+    "arm": "A",
+    "classId": "cl_0",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_0_6",
+    "name": "さくら1",
+    "arm": "A",
+    "classId": "cl_0",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_0_7",
+    "name": "ゆうと1",
+    "arm": "A",
+    "classId": "cl_0",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_1_0",
+    "name": "ひなた2",
+    "arm": "A",
+    "classId": "cl_1",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_1_1",
+    "name": "りく2",
+    "arm": "A",
+    "classId": "cl_1",
+    "joinedAt": "2026-06-09",
+    "status": "left",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_1_2",
+    "name": "あおい2",
+    "arm": "A",
+    "classId": "cl_1",
+    "joinedAt": "2026-06-09",
+    "status": "left",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_1_3",
+    "name": "かえで2",
+    "arm": "A",
+    "classId": "cl_1",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_1_4",
+    "name": "しおり2",
+    "arm": "A",
+    "classId": "cl_1",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_1_5",
+    "name": "たける2",
+    "arm": "A",
+    "classId": "cl_1",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_1_6",
+    "name": "なぎ2",
+    "arm": "A",
+    "classId": "cl_1",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_1_7",
+    "name": "ふうた2",
+    "arm": "A",
+    "classId": "cl_1",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_2_0",
+    "name": "あかり3",
+    "arm": "A",
+    "classId": "cl_2",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_2_1",
+    "name": "はると3",
+    "arm": "A",
+    "classId": "cl_2",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_2_2",
+    "name": "ゆい3",
+    "arm": "A",
+    "classId": "cl_2",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_2_3",
+    "name": "そうた3",
+    "arm": "A",
+    "classId": "cl_2",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_2_4",
+    "name": "みお3",
+    "arm": "A",
+    "classId": "cl_2",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_2_5",
+    "name": "れん3",
+    "arm": "A",
+    "classId": "cl_2",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_2_6",
+    "name": "さくら3",
+    "arm": "A",
+    "classId": "cl_2",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_2_7",
+    "name": "ゆうと3",
+    "arm": "A",
+    "classId": "cl_2",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_3_0",
+    "name": "ひなた4",
+    "arm": "B",
+    "classId": "cl_3",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_3_1",
+    "name": "りく4",
+    "arm": "B",
+    "classId": "cl_3",
+    "joinedAt": "2026-06-09",
+    "status": "left",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_3_2",
+    "name": "あおい4",
+    "arm": "B",
+    "classId": "cl_3",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_3_3",
+    "name": "かえで4",
+    "arm": "B",
+    "classId": "cl_3",
+    "joinedAt": "2026-06-09",
+    "status": "left",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_3_4",
+    "name": "しおり4",
+    "arm": "B",
+    "classId": "cl_3",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_3_5",
+    "name": "たける4",
+    "arm": "B",
+    "classId": "cl_3",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_3_6",
+    "name": "なぎ4",
+    "arm": "B",
+    "classId": "cl_3",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_3_7",
+    "name": "ふうた4",
+    "arm": "B",
+    "classId": "cl_3",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_4_0",
+    "name": "あかり5",
+    "arm": "B",
+    "classId": "cl_4",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_4_1",
+    "name": "はると5",
+    "arm": "B",
+    "classId": "cl_4",
+    "joinedAt": "2026-06-09",
+    "status": "left",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_4_2",
+    "name": "ゆい5",
+    "arm": "B",
+    "classId": "cl_4",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_4_3",
+    "name": "そうた5",
+    "arm": "B",
+    "classId": "cl_4",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_4_4",
+    "name": "みお5",
+    "arm": "B",
+    "classId": "cl_4",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_4_5",
+    "name": "れん5",
+    "arm": "B",
+    "classId": "cl_4",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_4_6",
+    "name": "さくら5",
+    "arm": "B",
+    "classId": "cl_4",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_4_7",
+    "name": "ゆうと5",
+    "arm": "B",
+    "classId": "cl_4",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_5_0",
+    "name": "ひなた6",
+    "arm": "B",
+    "classId": "cl_5",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_5_1",
+    "name": "りく6",
+    "arm": "B",
+    "classId": "cl_5",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_5_2",
+    "name": "あおい6",
+    "arm": "B",
+    "classId": "cl_5",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_5_3",
+    "name": "かえで6",
+    "arm": "B",
+    "classId": "cl_5",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_5_4",
+    "name": "しおり6",
+    "arm": "B",
+    "classId": "cl_5",
+    "joinedAt": "2026-06-09",
+    "status": "left",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_5_5",
+    "name": "たける6",
+    "arm": "B",
+    "classId": "cl_5",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_5_6",
+    "name": "なぎ6",
+    "arm": "B",
+    "classId": "cl_5",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  },
+  {
+    "id": "st_5_7",
+    "name": "ふうた6",
+    "arm": "B",
+    "classId": "cl_5",
+    "joinedAt": "2026-06-09",
+    "status": "active",
+    "demo": true,
+    "consent": {
+      "obtainedAt": "2026-06-07",
+      "by": "保護者（デモ）",
+      "method": "書面",
+      "note": "",
+      "recordedBy": "u_admin"
+    }
+  }
+]

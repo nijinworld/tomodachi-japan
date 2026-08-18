@@ -1,0 +1,15 @@
+[
+  {
+    "id": "mv_1",
+    "label": "v1（デモ凍結）",
+    "notes": "8月に凍結。以降のスコアはすべてこの版。",
+    "frozen": true,
+    "frozenAt": "2026-08-18T09:00:00.000Z",
+    "frozenBy": "u_admin",
+    "scorer": "heuristic-1.1.0",
+    "llm": "local-heuristic",
+    "rubric_sha256": "f5d2fd4771e30d1c14b920fb3f4160d118065b620f5565293f97e9f2ce285cbb",
+    "prompt_sha256": "6f7e16aaad7935080a549c1a20ce162810607fd341ebdc979b0b411011e3a4ac",
+    "fingerprint": "b7d76417386176ff6828994d82e0d8588613f9b63eac5649124a3c097fabad4e"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "name": "ranius-nihongo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ranius日本語 — オンライン日本語スクール『ともだちじゃぱん』の運用システム／教師トレーニングシステムの測定器",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "seed": "node scripts/seed.js",
+    "test": "node test/run.js && node test/import.test.js && node test/export.test.js && node test/report.test.js && node test/attendance.test.js && node test/contract.test.js",
+    "freeze": "node scripts/freeze-model.js",
+    "passcode": "node scripts/set-passcode.js",
+    "backup": "node scripts/backup.js",
+    "purge": "node scripts/purge.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>アンケート ｜ ともだちじゃぱん</title>
+<link rel="stylesheet" href="/style.css">
+<style>
+  /* 子どもが自分で答えるページ。文字も、押すところも大きくする。 */
+  body { background: #fbfcfe; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 24px 16px 80px; }
+  .q { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin: 14px 0; }
+  .q .txt { font-size: 17px; line-height: 1.6; margin-bottom: 12px; }
+  .opts { display: flex; gap: 8px; flex-wrap: wrap; }
+  .opts label {
+    flex: 1 1 100px; margin: 0; text-align: center; padding: 12px 6px; border: 2px solid var(--line);
+    border-radius: 10px; cursor: pointer; font-size: 14px; color: var(--ink); background: #fff; user-select: none;
+  }
+  .opts input { display: none; }
+  .opts label.on { border-color: var(--accent); background: var(--accentSoft); font-weight: 700; }
+  .big { font-size: 17px; padding: 14px 28px; border-radius: 12px; }
+  .done { text-align: center; padding: 60px 20px; }
+  .done .mark { font-size: 44px; }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap"><p class="muted">よみこみ中…</p></div>
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s === null || s === undefined ? '' : s)
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const token = new URLSearchParams(location.search).get('t');
+const answers = {};
+
+async function boot() {
+  if (!token) { $('#wrap').innerHTML = '<div class="callout bad">リンクが ただしくありません。せんせいに きいてください。</div>'; return; }
+  let d;
+  try {
+    const res = await fetch(`/api/survey/${encodeURIComponent(token)}`);
+    d = await res.json();
+    if (!res.ok) throw new Error(d.error || 'ひらけませんでした');
+  } catch (e) {
+    $('#wrap').innerHTML = `<div class="callout bad">${esc(e.message)}</div>`;
+    return;
+  }
+  if (!d.open) {
+    $('#wrap').innerHTML = '<div class="callout warn">この アンケートは しめきりました。</div>';
+    return;
+  }
+  const labels = d.scale.labels;
+  const keys = Object.keys(labels).sort();
+  $('#wrap').innerHTML = `
+    <h1 style="font-size:22px">じゅぎょうの アンケート</h1>
+    <p class="muted">${esc(d.className)}　${esc(d.cycle)}</p>
+    <div class="callout">${esc(d.note)}<br>
+      ちかいものを ひとつ えらんでください。せいかいは ありません。</div>
+    ${d.items.map((it, i) => `<div class="q">
+      <div class="txt">${i + 1}. ${esc(it.text)}</div>
+      <div class="opts" data-code="${esc(it.code)}">
+        ${keys.map((k) => `<label data-v="${k}"><input type="radio" name="${esc(it.code)}" value="${k}">${esc(labels[k])}</label>`).join('')}
+      </div>
+    </div>`).join('')}
+    <div style="text-align:center;margin-top:24px">
+      <button class="primary big" id="send">おくる</button>
+      <div id="msg" style="margin-top:10px"></div>
+    </div>`;
+
+  document.querySelectorAll('.opts').forEach((box) => {
+    box.querySelectorAll('label').forEach((lab) => {
+      lab.onclick = () => {
+        box.querySelectorAll('label').forEach((x) => x.classList.remove('on'));
+        lab.classList.add('on');
+        answers[box.dataset.code] = Number(lab.dataset.v);
+      };
+    });
+  });
+
+  $('#send').onclick = async () => {
+    const missing = d.items.filter((it) => !answers[it.code]);
+    if (missing.length) {
+      $('#msg').innerHTML = `<div class="err">まだ ${missing.length}こ のこっています。</div>`;
+      const first = document.querySelector(`.opts[data-code="${missing[0].code}"]`);
+      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    $('#send').disabled = true;
+    try {
+      const res = await fetch(`/api/survey/${encodeURIComponent(token)}`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ answers }),
+      });
+      const r = await res.json();
+      if (!res.ok) throw new Error(r.error || 'おくれませんでした');
+      $('#wrap').innerHTML = `<div class="done"><div class="mark">🌱</div>
+        <h1 style="font-size:20px">${esc(r.message)}</h1>
+        <p class="muted">この がめんは とじて だいじょうぶです。</p></div>`;
+    } catch (e) {
+      $('#msg').innerHTML = `<div class="err">${esc(e.message)}</div>`;
+      $('#send').disabled = false;
+    }
+  };
+}
+boot();
+</script>
+</body>
+</html>

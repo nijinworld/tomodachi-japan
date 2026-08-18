@@ -1,0 +1,26 @@
+[
+  {
+    "id": "tm_A",
+    "name": "チームA（免許あり）",
+    "mentorId": "u_mentorA",
+    "arm": "A",
+    "memberIds": [
+      "u_msy5nri201",
+      "u_msy5nri302",
+      "u_msy5nri303"
+    ],
+    "demo": true
+  },
+  {
+    "id": "tm_B",
+    "name": "チームB（免許なし・海外在住）",
+    "mentorId": "u_mentorB",
+    "arm": "B",
+    "memberIds": [
+      "u_msy5nri304",
+      "u_msy5nri305",
+      "u_msy5nri306"
+    ],
+    "demo": true
+  }
+]

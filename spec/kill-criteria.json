@@ -1,0 +1,81 @@
+{
+  "note": "撤退基準。判断の前に基準を書いておくためのもの。system は基準に触れた時点で画面最上部に警告を出し、safeguarding だけは全機能を停止する。",
+  "criteria": [
+    {
+      "id": "safeguarding",
+      "label": "セーフガーディング事案",
+      "rule": "1件でも発生したら全事業を停止して公表する",
+      "metric": "open_incident_count",
+      "operator": ">=",
+      "threshold": 1,
+      "action": "halt_all",
+      "priority": 0,
+      "rationale": "Bridge International。事業リスクではなく事業終了要因。"
+    },
+    {
+      "id": "enrolled_children_side_effect",
+      "label": "在校生（不登校の子）への副作用",
+      "rule": "満足度・出席が1ポイントでも落ちたら即停止",
+      "metric": "enrolled_satisfaction_delta_pt",
+      "operator": "<=",
+      "threshold": -1,
+      "action": "halt_experiment",
+      "priority": 1,
+      "rationale": "事業KPIより上に置く。"
+    },
+    {
+      "id": "mentor_load_ratio",
+      "label": "メンター1人あたりの担当数",
+      "rule": "AIアーム（B）が人間アーム（A）比で3倍未満なら、律速はAIコーチではない",
+      "metric": "mentor_load_ratio_b_over_a",
+      "operator": "<",
+      "threshold": 3.0,
+      "action": "rewrite_core_claim",
+      "priority": 2,
+      "rationale": "単価が桁で落ちないなら、別の律速を探す。18か月後の判定。"
+    },
+    {
+      "id": "quality_gap",
+      "label": "B群の授業の質",
+      "rule": "A群の80%に届かなければ、Raniusは代替ではなく補助である",
+      "metric": "quality_ratio_b_over_a",
+      "operator": "<",
+      "threshold": 0.8,
+      "action": "rewrite_core_claim",
+      "priority": 2
+    },
+    {
+      "id": "churn_gap",
+      "label": "保護者の受け入れ",
+      "rule": "解約率のA/B差が5ptを超えたら止める",
+      "metric": "churn_gap_pt",
+      "operator": ">",
+      "threshold": 5,
+      "action": "halt_experiment",
+      "priority": 3
+    },
+    {
+      "id": "irr",
+      "label": "評価者間一致（IRR）",
+      "rule": "10月20日までに .65 に届かなければ、ルーブリックが機能していない",
+      "metric": "irr_qwk",
+      "operator": "<",
+      "threshold": 0.65,
+      "action": "fix_instrument",
+      "priority": 2,
+      "deadline": "2026-10-20"
+    },
+    {
+      "id": "hire_rate",
+      "label": "採用率 2% → 15%",
+      "rule": "動かなければ、訓練システムではなく採用フィルターである",
+      "metric": "hire_rate_pct",
+      "operator": "<",
+      "threshold": 15,
+      "action": "rewrite_core_claim",
+      "priority": 3,
+      "enabled": false,
+      "disabled_reason": "この数字が 00_はじめに/04_数字の出典一覧.md に無いため、判定に使わない（2026-08-18）。出典表に載って裏が取れたら enabled を true に戻す。基準そのものは事業計画10章に残っている。"
+    }
+  ]
+}

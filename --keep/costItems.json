@@ -1,0 +1,116 @@
+[
+  {
+    "id": "ci_msy5ns6mkby",
+    "qty": 1,
+    "hours": 0,
+    "jpy": 180000,
+    "label": "募集広告・スカウト",
+    "category": "採用",
+    "actor": "vendor",
+    "arm": null,
+    "demo": true
+  },
+  {
+    "id": "ci_msy5ns6mkbz",
+    "qty": 1,
+    "hours": 60,
+    "jpy": 0,
+    "label": "書類・面接（落とした人の分も含む）",
+    "category": "採用",
+    "actor": "staff",
+    "arm": null,
+    "note": "49名落として1名採る分",
+    "demo": true
+  },
+  {
+    "id": "ci_msy5ns6mkc0",
+    "qty": 1,
+    "hours": 40,
+    "jpy": 0,
+    "label": "事前研修の設計・運営",
+    "category": "研修",
+    "actor": "staff",
+    "arm": null,
+    "demo": true
+  },
+  {
+    "id": "ci_msy5ns6mkc1",
+    "qty": 3,
+    "hours": 40,
+    "jpy": 0,
+    "label": "事前研修の受講（本人の時間）",
+    "category": "研修",
+    "actor": "facilitator",
+    "arm": "A",
+    "demo": true
+  },
+  {
+    "id": "ci_msy5ns6mkc2",
+    "qty": 3,
+    "hours": 60,
+    "jpy": 0,
+    "label": "事前研修の受講（本人の時間）",
+    "category": "研修",
+    "actor": "facilitator",
+    "arm": "B",
+    "note": "未経験のぶん長い",
+    "demo": true
+  },
+  {
+    "id": "ci_msy5ns6mkc3",
+    "qty": 3,
+    "hours": 6,
+    "jpy": 0,
+    "label": "人間メンターの伴走",
+    "category": "伴走",
+    "actor": "mentor",
+    "arm": "A",
+    "note": "週45分 × 8週",
+    "demo": true
+  },
+  {
+    "id": "ci_msy5ns6mkc4",
+    "qty": 3,
+    "hours": 1.6,
+    "jpy": 0,
+    "label": "人間メンターの確認（AIの所見を直す）",
+    "category": "伴走",
+    "actor": "mentor",
+    "arm": "B",
+    "note": "週12分 × 8週",
+    "demo": true
+  },
+  {
+    "id": "ci_msy5ns6mkc5",
+    "qty": 3,
+    "hours": 8,
+    "jpy": 0,
+    "label": "チーム週次（本人の時間）",
+    "category": "伴走",
+    "actor": "facilitator",
+    "arm": "A",
+    "demo": true
+  },
+  {
+    "id": "ci_msy5ns6mkc6",
+    "qty": 3,
+    "hours": 8,
+    "jpy": 0,
+    "label": "チーム週次（本人の時間）",
+    "category": "伴走",
+    "actor": "facilitator",
+    "arm": "B",
+    "demo": true
+  },
+  {
+    "id": "ci_msy5ns6mkc7",
+    "qty": 1,
+    "hours": 0,
+    "jpy": 24000,
+    "label": "Ranius の運用（サーバ・LLM）",
+    "category": "システム",
+    "actor": "vendor",
+    "arm": "B",
+    "demo": true
+  }
+]

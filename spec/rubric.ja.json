@@ -1,0 +1,328 @@
+{
+  "id": "rubric.ja",
+  "version": "1.2.0",
+  "title": "小集団オンライン日本語ファシリテーション観察ルーブリック",
+  "status": "未検証（因子分析・IRR測定・クロスウォークいずれも未実施）",
+  "scope": {
+    "unit": "セッション（1授業）",
+    "setting": "オンライン・同期・8名以下",
+    "subject": "日本語（JSL）",
+    "note": "小集団オンラインのファシリテーターを対象とするセッション単位の検証済み観察尺度は世界に存在しないため自作している。既存尺度（CLASS/PLATO/MQI）へのクロスウォークは crosswalk 欄に暫定で置くが、未作成である。"
+  },
+  "window": {
+    "policy": "first_n_minutes",
+    "minutes": 15,
+    "rationale": "冒頭15分の観察は全体の約60%の信頼性を持ち、観察者時間は1/3で済む（MET Project）。",
+    "evidence_id": "met_first15"
+  },
+  "scale": {
+    "min": 0,
+    "max": 4,
+    "labels": {
+      "0": "観察できない／該当の行動が出ていない",
+      "1": "断片的",
+      "2": "一部で成立",
+      "3": "おおむね成立",
+      "4": "一貫して成立"
+    }
+  },
+  "aggregate": {
+    "method": "mean_of_dimensions",
+    "report_order": "dimension_first",
+    "ranking_across_facilitators": false,
+    "comparison_target": "same_facilitator_past_only",
+    "note": "ファシリテーター間の順位づけは仕様として禁止する。比較対象は常に本人の過去のみ。アーム単位の集計は許可する（A/B検証に必要なため）。 rater が human の観点は、AIの平均（overall）に含めない。AIの値は補助として表示するだけ。",
+    "ai_overall_excludes_human_rated": true
+  },
+  "dimensions": [
+    {
+      "code": "CI",
+      "name": "理解可能なインプットの調整",
+      "question": "子どもが「わかる」高さに、日本語を合わせられているか",
+      "indicator": "input_adjustment",
+      "signals": [
+        "teacher_mean_mora",
+        "comprehension_check_per_10min",
+        "rephrase_rate"
+      ],
+      "bands": [
+        {
+          "level": 4,
+          "min": 0.75
+        },
+        {
+          "level": 3,
+          "min": 0.55
+        },
+        {
+          "level": 2,
+          "min": 0.35
+        },
+        {
+          "level": 1,
+          "min": 0.15
+        },
+        {
+          "level": 0,
+          "min": 0
+        }
+      ],
+      "observable": [
+        "1発話が長すぎない（目安 25モーラ以下）",
+        "「わかった？」ではなく内容を問い返す形で理解を確認している",
+        "通じなかった語を、より易しい語に言い換えている"
+      ],
+      "crosswalk": {
+        "CLASS": "Instructional Support / Language Modeling",
+        "PLATO": "Intellectual Challenge",
+        "MQI": "-",
+        "status": "未作成（暫定対応）",
+        "ranius_jsl_rubric_v1": "input"
+      },
+      "evidence_id": "unverified_rubric",
+      "rater": "ai"
+    },
+    {
+      "code": "TD",
+      "name": "発話機会の配分",
+      "question": "8人の中で、話す番が偏っていないか",
+      "indicator": "turn_equity",
+      "signals": [
+        "student_turn_gini",
+        "teacher_talk_ratio",
+        "silent_student_count"
+      ],
+      "bands": [
+        {
+          "level": 4,
+          "min": 0.75
+        },
+        {
+          "level": 3,
+          "min": 0.55
+        },
+        {
+          "level": 2,
+          "min": 0.35
+        },
+        {
+          "level": 1,
+          "min": 0.15
+        },
+        {
+          "level": 0,
+          "min": 0
+        }
+      ],
+      "observable": [
+        "1人も発話ゼロの子がいない",
+        "指名が特定の子に連続していない",
+        "教師の話す量が場を占有していない（目安 モーラ比 60%以下）"
+      ],
+      "crosswalk": {
+        "CLASS": "Emotional Support / Regard for Student Perspectives",
+        "PLATO": "Classroom Discourse",
+        "MQI": "-",
+        "status": "未作成（暫定対応）",
+        "ranius_jsl_rubric_v1": "learner_talk"
+      },
+      "evidence_id": "unverified_rubric",
+      "rater": "ai"
+    },
+    {
+      "code": "CF",
+      "name": "訂正フィードバックと取り込み",
+      "question": "直したことが、子どもに届いているか",
+      "indicator": "uptake_rate",
+      "signals": [
+        "recast_count",
+        "explicit_correction_count",
+        "uptake_count"
+      ],
+      "bands": [
+        {
+          "level": 4,
+          "min": 0.6
+        },
+        {
+          "level": 3,
+          "min": 0.4
+        },
+        {
+          "level": 2,
+          "min": 0.25
+        },
+        {
+          "level": 1,
+          "min": 0.1
+        },
+        {
+          "level": 0,
+          "min": 0
+        }
+      ],
+      "observable": [
+        "誤りに対してリキャストまたは明示的訂正が入っている",
+        "訂正のあと、子どもが実際に言い直している（uptake）",
+        "訂正が人格ではなく形式に向いている"
+      ],
+      "crosswalk": {
+        "CLASS": "Instructional Support / Quality of Feedback",
+        "PLATO": "Feedback",
+        "MQI": "-",
+        "status": "未作成（暫定対応）",
+        "ranius_jsl_rubric_v1": "negotiation"
+      },
+      "evidence_id": "unverified_rubric",
+      "rater": "ai",
+      "rationale": "uptake を指標に選んだ理由は M-Powering Teachers RCT（NLPの自動フィードバックで uptake +9%）。ただしそれは「この帯で0〜4に落とすのが妥当」を意味しない。この観点も未検証。"
+    },
+    {
+      "code": "NM",
+      "name": "意味交渉",
+      "question": "通じなかったときに、通じさせるやりとりが起きているか",
+      "indicator": "negotiation_density",
+      "signals": [
+        "clarification_request_count",
+        "confirmation_check_count",
+        "repair_episode_count"
+      ],
+      "bands": [
+        {
+          "level": 4,
+          "min": 0.7
+        },
+        {
+          "level": 3,
+          "min": 0.5
+        },
+        {
+          "level": 2,
+          "min": 0.3
+        },
+        {
+          "level": 1,
+          "min": 0.1
+        },
+        {
+          "level": 0,
+          "min": 0
+        }
+      ],
+      "observable": [
+        "聞き返し（「もういちど言って」「どういう意味？」）が使われている",
+        "確認（「〜ということ？」）で言い換えを促している",
+        "通じないまま次に進んでいない"
+      ],
+      "crosswalk": {
+        "CLASS": "Instructional Support / Language Modeling",
+        "PLATO": "Classroom Discourse",
+        "MQI": "-",
+        "status": "未作成（暫定対応）",
+        "ranius_jsl_rubric_v1": "negotiation"
+      },
+      "evidence_id": "unverified_rubric",
+      "rater": "ai"
+    },
+    {
+      "code": "SC",
+      "name": "足場と安心",
+      "question": "間違えても大丈夫な場になっているか",
+      "indicator": "scaffold_safety",
+      "signals": [
+        "wait_time_median_sec",
+        "acknowledgement_rate",
+        "student_initiated_turn_rate"
+      ],
+      "bands": [
+        {
+          "level": 4,
+          "min": 0.7
+        },
+        {
+          "level": 3,
+          "min": 0.5
+        },
+        {
+          "level": 2,
+          "min": 0.3
+        },
+        {
+          "level": 1,
+          "min": 0.12
+        },
+        {
+          "level": 0,
+          "min": 0
+        }
+      ],
+      "observable": [
+        "指名のあと、待ち時間が確保されている（目安 3秒以上）",
+        "子どもの発話が受け止められている（受容の反応がある）",
+        "指名されていない自発の発話が出ている"
+      ],
+      "crosswalk": {
+        "CLASS": "Emotional Support / Positive Climate",
+        "PLATO": "Behavior Management",
+        "MQI": "-",
+        "status": "未作成（暫定対応）",
+        "ranius_jsl_rubric_v1": "safety"
+      },
+      "evidence_id": "unverified_rubric",
+      "rater": "ai"
+    },
+    {
+      "code": "OUT",
+      "name": "アウトプットの質と変容",
+      "question": "子どもが、その45分で何を残したか",
+      "rater": "human",
+      "rater_note": "AIでは代替しにくい観点。人間評定を主とし、AIの値は補助として出す（AIの平均には含めない）。",
+      "indicator": "output_quality",
+      "signals": [
+        "student_mean_mora",
+        "student_long_turn_rate",
+        "student_mora_growth"
+      ],
+      "bands": [
+        {
+          "level": 4,
+          "min": 0.7
+        },
+        {
+          "level": 3,
+          "min": 0.5
+        },
+        {
+          "level": 2,
+          "min": 0.32
+        },
+        {
+          "level": 1,
+          "min": 0.15
+        },
+        {
+          "level": 0,
+          "min": 0
+        }
+      ],
+      "observable": [
+        "単語レベルの反応で終わっていない（文で言えている）",
+        "授業の後半で、発話が前半より長くなっている",
+        "授業の前後で、言えること・書けることが具体的に増えている（＝人間が見る）"
+      ],
+      "crosswalk": {
+        "CLASS": "Instructional Support / Language Modeling",
+        "PLATO": "Text-Based Instruction",
+        "MQI": "-",
+        "ranius_jsl_rubric_v1": "output",
+        "status": "未作成（暫定対応）"
+      },
+      "evidence_id": "unverified_rubric"
+    }
+  ],
+  "scoring_notes": {
+    "mora": "モーラ数は文字数ではない。かな1字=1モーラ、拗音の小書きは0、漢字は概算2モーラで数える（近似。要検証）。",
+    "determinism": "同じ書き起こしと同じ rubric からは、必ず同じスコアが出る。乱数を使わない。",
+    "evidence_required": "各次元のスコアには、必ず時刻つきの根拠イベントを添付する。イベントが検出されなかった次元は、代わりに数えた信号（signals）の値を画面に出す。値だけを根拠なしに出すことはしない。"
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "note": "画面に出るすべての数字は、ここにある evidence_id を持たなければならない。持たない数字は『未検証』バッジで表示する。出典の原本は 00_はじめに/04_数字の出典一覧.md。",
+  "levels": {
+    "verified": "一次資料で確認済み。対外説明に使ってよい",
+    "internal": "自社値。推定を含む。裏取りが必要",
+    "unverified": "未検証。対外説明に使ってはいけない",
+    "none": "公表エビデンスなし"
+  },
+  "items": {
+    "tarl_effect": {
+      "level": "verified",
+      "claim": "無資格者の研修でも学力は上がる",
+      "value": "+0.13〜+0.70 SD",
+      "source": "TaRL（Pratham × J-PAL）"
+    },
+    "uttarakhand": {
+      "level": "verified",
+      "claim": "置き方を誤ると効果はゼロになる",
+      "value": "+0.01 SD",
+      "source": "J-PAL / NBER WP 22746"
+    },
+    "coaching_quality": {
+      "level": "verified",
+      "claim": "コーチングは指導の質を上げる",
+      "value": "0.49 SD",
+      "source": "Kraft, Blazar & Hogan (2018)"
+    },
+    "coaching_learning": {
+      "level": "verified",
+      "claim": "コーチングは子どもの学力を上げる",
+      "value": "0.18 SD",
+      "source": "Kraft, Blazar & Hogan (2018)"
+    },
+    "coaching_scale_decay": {
+      "level": "verified",
+      "claim": "コーチングは規模で落ちる",
+      "value": "0.63 → 0.34（100人超）",
+      "source": "Kraft, Blazar & Hogan (2018)"
+    },
+    "coaching_virtual": {
+      "level": "verified",
+      "claim": "オンラインは対面に劣らない",
+      "value": "有意差なし",
+      "source": "Kraft, Blazar & Hogan (2018)"
+    },
+    "coaching_hours": {
+      "level": "verified",
+      "claim": "接触時間は効果と無関係",
+      "value": "−0.000 ns",
+      "source": "Kraft, Blazar & Hogan (2018)"
+    },
+    "student_survey": {
+      "level": "verified",
+      "claim": "生徒フィードバックは効く",
+      "value": "d=0.27",
+      "source": "Röhl, Bijlsma & Schwichow (2025)"
+    },
+    "student_survey_design": {
+      "level": "verified",
+      "claim": "返し方を設計すると効果が10倍以上になる",
+      "value": "d=0.568 / 0.050",
+      "source": "Röhl, Bijlsma & Schwichow (2025)"
+    },
+    "met_reliability": {
+      "level": "verified",
+      "claim": "生徒調査は1回の授業観察より信頼できる",
+      "value": "0.66 vs 0.14〜0.37",
+      "source": "MET Project"
+    },
+    "met_first15": {
+      "level": "verified",
+      "claim": "冒頭15分で全体の約6割の信頼性",
+      "value": "約60%",
+      "source": "MET Project"
+    },
+    "met_two_raters": {
+      "level": "verified",
+      "claim": "評定者2名×授業2本で .67",
+      "value": ".67",
+      "source": "MET Project"
+    },
+    "mpowering_uptake": {
+      "level": "verified",
+      "claim": "NLP自動フィードバックだけで取り込みが増える",
+      "value": "+9%（教師の話す時間 −5%）",
+      "source": "M-Powering Teachers RCT（414名・5,037セッション）"
+    },
+    "tutor_copilot": {
+      "level": "verified",
+      "claim": "AIのチューター指導は安く効く",
+      "value": "+4pp、$20/人/年 vs $3,300/人/年",
+      "source": "Tutor CoPilot（Stanford）"
+    },
+    "ai_coaching_rct": {
+      "level": "none",
+      "claim": "低資源環境でAIコーチングを検証したRCT",
+      "value": "世界に0本",
+      "source": "BE2 AI Evidence Synthesis 2026/2"
+    },
+    "scenario_study": {
+      "level": "none",
+      "claim": "AI場面スタディ（AI生徒）の効果",
+      "value": "公表エビデンスなし",
+      "source": "—"
+    },
+    "archive_library": {
+      "level": "unverified",
+      "claim": "アーカイブが先生を伸ばすか",
+      "value": "未検証。現場評価は最高",
+      "source": "NIJIN 先生ヒアリング(2026/8)"
+    },
+    "unverified_rubric": {
+      "level": "unverified",
+      "claim": "このルーブリックが『良い授業』を測れているか",
+      "value": "未検証（因子分析・IRR・クロスウォーク未実施）",
+      "source": "—"
+    },
+    "mentor_load": {
+      "level": "unverified",
+      "claim": "メンター1人あたりの担当可能人数",
+      "value": "計測中。12月のA/Bで実測",
+      "source": "自社実測（開始したところ）"
+    },
+    "cost_per_facilitator": {
+      "level": "unverified",
+      "claim": "ファシリテーター1名あたりの完全負荷養成コスト",
+      "value": "未測定",
+      "source": "—"
+    },
+    "demo_data": {
+      "level": "unverified",
+      "claim": "デモ用に生成した値",
+      "value": "実績ではない",
+      "source": "—"
+    },
+    "irr_measured": {
+      "level": "unverified",
+      "claim": "当社の評価者間一致（いま入っている盲検採点から計算した値）",
+      "value": "未測定。目標 .65、期限 2026-10-20",
+      "source": "自社実測"
+    },
+    "churn_measured": {
+      "level": "unverified",
+      "claim": "当社の解約率とそのA/B差",
+      "value": "未確定（在籍の記録が揃うまで）",
+      "source": "自社実測"
+    }
+  }
+}

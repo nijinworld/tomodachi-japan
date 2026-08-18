@@ -1,0 +1,482 @@
+[
+  {
+    "id": "mt_msy5ns6mkba",
+    "teamId": "tm_A",
+    "date": "2026-06-28",
+    "attendeeIds": [
+      "u_msy5nri201",
+      "u_msy5nri302",
+      "u_msy5nri303"
+    ],
+    "declarations": [
+      {
+        "facilitatorId": "u_msy5nri201",
+        "dimension": "TD",
+        "action": "言い直したあと「もう一回言ってみて」を足す"
+      },
+      {
+        "facilitatorId": "u_msy5nri302",
+        "dimension": "SC",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      },
+      {
+        "facilitatorId": "u_msy5nri303",
+        "dimension": "SC",
+        "action": "指名したあと3つ数えてから次に行く"
+      }
+    ],
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.198Z",
+    "demo": true
+  },
+  {
+    "id": "mt_msy5ns6mkbb",
+    "teamId": "tm_B",
+    "date": "2026-06-28",
+    "attendeeIds": [
+      "u_msy5nri304",
+      "u_msy5nri305",
+      "u_msy5nri306"
+    ],
+    "declarations": [
+      {
+        "facilitatorId": "u_msy5nri304",
+        "dimension": "SC",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      },
+      {
+        "facilitatorId": "u_msy5nri305",
+        "dimension": "CF",
+        "action": "指名したあと3つ数えてから次に行く"
+      },
+      {
+        "facilitatorId": "u_msy5nri306",
+        "dimension": "SC",
+        "action": "言い直したあと「もう一回言ってみて」を足す"
+      }
+    ],
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.198Z",
+    "demo": true
+  },
+  {
+    "id": "mt_msy5ns6mkbc",
+    "teamId": "tm_A",
+    "date": "2026-07-05",
+    "attendeeIds": [
+      "u_msy5nri201",
+      "u_msy5nri302",
+      "u_msy5nri303"
+    ],
+    "declarations": [
+      {
+        "facilitatorId": "u_msy5nri201",
+        "dimension": "CF",
+        "action": "指名したあと3つ数えてから次に行く"
+      },
+      {
+        "facilitatorId": "u_msy5nri302",
+        "dimension": "SC",
+        "action": "指名したあと3つ数えてから次に行く"
+      },
+      {
+        "facilitatorId": "u_msy5nri303",
+        "dimension": "SC",
+        "action": "言い直したあと「もう一回言ってみて」を足す"
+      }
+    ],
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.198Z",
+    "demo": true
+  },
+  {
+    "id": "mt_msy5ns6mkbd",
+    "teamId": "tm_B",
+    "date": "2026-07-05",
+    "attendeeIds": [
+      "u_msy5nri304",
+      "u_msy5nri305",
+      "u_msy5nri306"
+    ],
+    "declarations": [
+      {
+        "facilitatorId": "u_msy5nri304",
+        "dimension": "SC",
+        "action": "言い直したあと「もう一回言ってみて」を足す"
+      },
+      {
+        "facilitatorId": "u_msy5nri305",
+        "dimension": "CF",
+        "action": "指名したあと3つ数えてから次に行く"
+      },
+      {
+        "facilitatorId": "u_msy5nri306",
+        "dimension": "CF",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      }
+    ],
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.198Z",
+    "demo": true
+  },
+  {
+    "id": "mt_msy5ns6mkbe",
+    "teamId": "tm_A",
+    "date": "2026-07-12",
+    "attendeeIds": [
+      "u_msy5nri201",
+      "u_msy5nri302",
+      "u_msy5nri303"
+    ],
+    "declarations": [
+      {
+        "facilitatorId": "u_msy5nri201",
+        "dimension": "TD",
+        "action": "言い直したあと「もう一回言ってみて」を足す"
+      },
+      {
+        "facilitatorId": "u_msy5nri302",
+        "dimension": "CF",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      },
+      {
+        "facilitatorId": "u_msy5nri303",
+        "dimension": "TD",
+        "action": "指名したあと3つ数えてから次に行く"
+      }
+    ],
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.198Z",
+    "demo": true
+  },
+  {
+    "id": "mt_msy5ns6mkbf",
+    "teamId": "tm_B",
+    "date": "2026-07-12",
+    "attendeeIds": [
+      "u_msy5nri304",
+      "u_msy5nri305",
+      "u_msy5nri306"
+    ],
+    "declarations": [
+      {
+        "facilitatorId": "u_msy5nri304",
+        "dimension": "TD",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      },
+      {
+        "facilitatorId": "u_msy5nri305",
+        "dimension": "SC",
+        "action": "言い直したあと「もう一回言ってみて」を足す"
+      },
+      {
+        "facilitatorId": "u_msy5nri306",
+        "dimension": "TD",
+        "action": "言い直したあと「もう一回言ってみて」を足す"
+      }
+    ],
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.198Z",
+    "demo": true
+  },
+  {
+    "id": "mt_msy5ns6mkbg",
+    "teamId": "tm_A",
+    "date": "2026-07-19",
+    "attendeeIds": [
+      "u_msy5nri201",
+      "u_msy5nri302",
+      "u_msy5nri303"
+    ],
+    "declarations": [
+      {
+        "facilitatorId": "u_msy5nri201",
+        "dimension": "CF",
+        "action": "言い直したあと「もう一回言ってみて」を足す"
+      },
+      {
+        "facilitatorId": "u_msy5nri302",
+        "dimension": "CF",
+        "action": "言い直したあと「もう一回言ってみて」を足す"
+      },
+      {
+        "facilitatorId": "u_msy5nri303",
+        "dimension": "TD",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      }
+    ],
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.198Z",
+    "demo": true
+  },
+  {
+    "id": "mt_msy5ns6mkbh",
+    "teamId": "tm_B",
+    "date": "2026-07-19",
+    "attendeeIds": [
+      "u_msy5nri304",
+      "u_msy5nri305",
+      "u_msy5nri306"
+    ],
+    "declarations": [
+      {
+        "facilitatorId": "u_msy5nri304",
+        "dimension": "SC",
+        "action": "言い直したあと「もう一回言ってみて」を足す"
+      },
+      {
+        "facilitatorId": "u_msy5nri305",
+        "dimension": "TD",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      },
+      {
+        "facilitatorId": "u_msy5nri306",
+        "dimension": "TD",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      }
+    ],
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.198Z",
+    "demo": true
+  },
+  {
+    "id": "mt_msy5ns6mkbi",
+    "teamId": "tm_A",
+    "date": "2026-07-26",
+    "attendeeIds": [
+      "u_msy5nri201",
+      "u_msy5nri302",
+      "u_msy5nri303"
+    ],
+    "declarations": [
+      {
+        "facilitatorId": "u_msy5nri201",
+        "dimension": "CF",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      },
+      {
+        "facilitatorId": "u_msy5nri302",
+        "dimension": "SC",
+        "action": "言い直したあと「もう一回言ってみて」を足す"
+      },
+      {
+        "facilitatorId": "u_msy5nri303",
+        "dimension": "TD",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      }
+    ],
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.198Z",
+    "demo": true
+  },
+  {
+    "id": "mt_msy5ns6mkbj",
+    "teamId": "tm_B",
+    "date": "2026-07-26",
+    "attendeeIds": [
+      "u_msy5nri304",
+      "u_msy5nri305",
+      "u_msy5nri306"
+    ],
+    "declarations": [
+      {
+        "facilitatorId": "u_msy5nri304",
+        "dimension": "TD",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      },
+      {
+        "facilitatorId": "u_msy5nri305",
+        "dimension": "TD",
+        "action": "指名したあと3つ数えてから次に行く"
+      },
+      {
+        "facilitatorId": "u_msy5nri306",
+        "dimension": "CF",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      }
+    ],
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.198Z",
+    "demo": true
+  },
+  {
+    "id": "mt_msy5ns6mkbk",
+    "teamId": "tm_A",
+    "date": "2026-08-02",
+    "attendeeIds": [
+      "u_msy5nri201",
+      "u_msy5nri302",
+      "u_msy5nri303"
+    ],
+    "declarations": [
+      {
+        "facilitatorId": "u_msy5nri201",
+        "dimension": "SC",
+        "action": "言い直したあと「もう一回言ってみて」を足す"
+      },
+      {
+        "facilitatorId": "u_msy5nri302",
+        "dimension": "CF",
+        "action": "言い直したあと「もう一回言ってみて」を足す"
+      },
+      {
+        "facilitatorId": "u_msy5nri303",
+        "dimension": "CF",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      }
+    ],
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.198Z",
+    "demo": true
+  },
+  {
+    "id": "mt_msy5ns6mkbl",
+    "teamId": "tm_B",
+    "date": "2026-08-02",
+    "attendeeIds": [
+      "u_msy5nri304",
+      "u_msy5nri305",
+      "u_msy5nri306"
+    ],
+    "declarations": [
+      {
+        "facilitatorId": "u_msy5nri304",
+        "dimension": "SC",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      },
+      {
+        "facilitatorId": "u_msy5nri305",
+        "dimension": "TD",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      },
+      {
+        "facilitatorId": "u_msy5nri306",
+        "dimension": "SC",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      }
+    ],
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.198Z",
+    "demo": true
+  },
+  {
+    "id": "mt_msy5ns6mkbm",
+    "teamId": "tm_A",
+    "date": "2026-08-09",
+    "attendeeIds": [
+      "u_msy5nri201",
+      "u_msy5nri302",
+      "u_msy5nri303"
+    ],
+    "declarations": [
+      {
+        "facilitatorId": "u_msy5nri201",
+        "dimension": "CF",
+        "action": "指名したあと3つ数えてから次に行く"
+      },
+      {
+        "facilitatorId": "u_msy5nri302",
+        "dimension": "SC",
+        "action": "指名したあと3つ数えてから次に行く"
+      },
+      {
+        "facilitatorId": "u_msy5nri303",
+        "dimension": "TD",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      }
+    ],
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.198Z",
+    "demo": true
+  },
+  {
+    "id": "mt_msy5ns6mkbn",
+    "teamId": "tm_B",
+    "date": "2026-08-09",
+    "attendeeIds": [
+      "u_msy5nri304",
+      "u_msy5nri305",
+      "u_msy5nri306"
+    ],
+    "declarations": [
+      {
+        "facilitatorId": "u_msy5nri304",
+        "dimension": "TD",
+        "action": "指名したあと3つ数えてから次に行く"
+      },
+      {
+        "facilitatorId": "u_msy5nri305",
+        "dimension": "SC",
+        "action": "指名したあと3つ数えてから次に行く"
+      },
+      {
+        "facilitatorId": "u_msy5nri306",
+        "dimension": "TD",
+        "action": "言い直したあと「もう一回言ってみて」を足す"
+      }
+    ],
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.198Z",
+    "demo": true
+  },
+  {
+    "id": "mt_msy5ns6mkbo",
+    "teamId": "tm_A",
+    "date": "2026-08-16",
+    "attendeeIds": [
+      "u_msy5nri201",
+      "u_msy5nri302",
+      "u_msy5nri303"
+    ],
+    "declarations": [
+      {
+        "facilitatorId": "u_msy5nri201",
+        "dimension": "TD",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      },
+      {
+        "facilitatorId": "u_msy5nri302",
+        "dimension": "SC",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      },
+      {
+        "facilitatorId": "u_msy5nri303",
+        "dimension": "SC",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      }
+    ],
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.198Z",
+    "demo": true
+  },
+  {
+    "id": "mt_msy5ns6mkbp",
+    "teamId": "tm_B",
+    "date": "2026-08-16",
+    "attendeeIds": [
+      "u_msy5nri304",
+      "u_msy5nri305",
+      "u_msy5nri306"
+    ],
+    "declarations": [
+      {
+        "facilitatorId": "u_msy5nri304",
+        "dimension": "CF",
+        "action": "指名したあと3つ数えてから次に行く"
+      },
+      {
+        "facilitatorId": "u_msy5nri305",
+        "dimension": "CF",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      },
+      {
+        "facilitatorId": "u_msy5nri306",
+        "dimension": "SC",
+        "action": "開始5分以内に全員に1回ずつ順番を回す"
+      }
+    ],
+    "note": "",
+    "createdAt": "2026-08-18T04:21:13.198Z",
+    "demo": true
+  }
+]
